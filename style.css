@@ -1,0 +1,47 @@
+html{
+
+margin: 0;
+padding: 0;
+scroll-behavior: smooth;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+body{
+
+padding: 0;
+margin: 0;
+
+}
+
+header{
+
+background-color: rgb(63, 64, 74);
+padding: 2rem;
+color: rgb(255, 255, 255);
+display: flex;
+justify-content: space-between;
+box-sizing: border-box;
+
+}
+
+nav ul li{
+display: inline;
+margin: 0 0.3rem;
+
+}
+
+a{
+
+text-decoration: none;
+color: rgb(229, 255, 252);
+border: 2px solid;
+padding: 0.3rem;
+border-radius: 2rem;
+background-color: rgba(0, 255, 255, 0.163);
+}
+
+
+#home, #sobre, #contato{
+
+    padding: 10rem;
+}
