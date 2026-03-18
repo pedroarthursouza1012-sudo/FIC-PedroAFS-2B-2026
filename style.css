@@ -3,45 +3,104 @@ html{
 margin: 0;
 padding: 0;
 scroll-behavior: smooth;
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+font-family: "Raleway", sans-serif;;
+  font-weight: 200;
+  font-style: normal;
+box-sizing: border-box;
 
 }
 body{
 
 padding: 0;
 margin: 0;
+padding-top: 120px;
+}
 
+@keyframes colorir{
+
+0%{color: white;}
+50%{ color:rgb(167, 233, 255)}
+100%{color:white}
 }
 
 header{
 
 background-color: rgb(63, 64, 74);
-padding: 2rem;
+padding: 0.5rem;
 color: rgb(255, 255, 255);
 display: flex;
-justify-content: space-between;
+justify-content: flex-start;
 box-sizing: border-box;
+position: fixed;
+
+top: 0;
+  left: 0;
+  right: 0; /* garante que o header não ultrapasse a tela */
+  z-index: 100;
+
+  border: 4px solid black;
+
+ display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+padding: 0.5rem 1rem;
+gap: 2rem;
+}
+
+h1{
+
+font-size: 2.5rem;
+text-shadow: 0 0 3px rgba(255, 255, 255, 0.534);
+border: 2px solid rgb(255, 255, 255);
+border-radius: 1rem;
+padding: 1rem;
+background-color: rgba(0, 0, 0, 0.327);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+box-shadow: 0 0 4px;
+font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+animation: colorir 2s infinite;
+}
+
+nav ul{
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem; /* espaçamento bonito entre botões */
+  align-items: center;
+list-style: none;
+margin-right: 2rem;
 
 }
 
-nav ul li{
-display: inline;
-margin: 0 0.3rem;
-
-}
 
 a{
 
 text-decoration: none;
-color: rgb(229, 255, 252);
+color: rgb(0, 0, 0);
 border: 2px solid;
-padding: 0.3rem;
-border-radius: 2rem;
-background-color: rgba(0, 255, 255, 0.163);
+padding: 0.5rem;
+border-radius: 1rem;
+background-color: rgb(255, 255, 255);
+font-size: 1.5rem;
+transition:all 0.4s; 
+  display: inline-block; 
+box-shadow: 0 0 4px ;
+
 }
 
 
 #home, #sobre, #contato{
 
-    padding: 10rem;
+    padding: 4rem;
 }
+
+a:hover{
+
+transform: translateY(-8px);
+
+}
+
