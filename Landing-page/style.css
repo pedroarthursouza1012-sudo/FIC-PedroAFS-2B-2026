@@ -10,12 +10,13 @@ html {
 }
 
 body {
-  padding-top: 120px;
+  
 
   background-image: url('https://images.unsplash.com/photo-1743657166981-8d8e11d03c3e');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  padding: 0 1rem;
 }
 
 /* garante que o fundo não corte */
@@ -41,6 +42,7 @@ header {
 
   padding: 1rem 3rem;
   border: 4px solid black;
+
 }
 
 /* título */
@@ -111,10 +113,15 @@ nav ul {
 
 #home {
   justify-content: flex-start;
+  margin-top: 160px;
+ 
 }
 
 .box {
   max-width: 400px;
+  width: 100%;
+
+
 }
 
 .box h2 {
@@ -224,5 +231,62 @@ border: 1px solid;
 border-radius: 1rem;
 background: linear-gradient(0deg,rgba(70, 216, 232, 1) 0%, rgba(163, 255, 221, 1) 100%);
 box-shadow: 6px 7px 0px ;
+}
+
+/*=============================*/
+/*======= RESPONSIVIDADE =======*/
+/*==============================*/
+
+
+
+/*=== TELA PEQUENA ===*/
+
+
+@media (max-width:768px){
+
+header{
+
+flex-direction: column;
+display:flex;
 
 }
+
+header a{
+
+display:flex;
+margin-top: 0.8rem;
+font-size: 0.7rem;
+
+}
+
+   #home, #sobre, #projetos, #contato {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+        box-shadow: 6px 6px 1px black;
+ 
+
+  }
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+ 
+body {
+    padding-top: 160px;
+  }
+
+  header {
+    padding: 1rem;
+  }
+
+#home {
+  justify-content: flex-start;
+  margin-top: 60px;
+ 
+}
+
+
+}
+
