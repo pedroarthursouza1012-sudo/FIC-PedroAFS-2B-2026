@@ -3,21 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Java script</title>
 </head>
 <body>
-    <h1>Relaçaõ da turma</h1>    
 
-    <input type="text" id="nome" placeholder="Nome">
-    <input type="number" id="idade" placeholder="Idade">
- 
+<div>
+    <h1>Lista de pesoas</h1>
+    <input type="text" id="nomes" value="Maria-10, Ailton-66, Pedro-16, Andreia-43, Teddy-35">
+    <button onclick="organizar(); organizar2();organizarAlfa()">Organizar</button>
+    
+    <button onclick="limpar()">Limpar lista</button>
+    <button onclick="analise()">Analisar</button>
+</div>
 
-<button type="submit" onclick="enviar()">Enviar</button>
-<button onclick="analise()">Análisar</button>
+<div>
 
-<h2>Lista de pessoas</h2>
+    <h1 class="h11">Resultado:</h1>
+    <ul id="listaFinal"></ul>
 
-<ul id="lista"></ul>
+</div>
+
+<div>
+
+    <h1 class="h11">Resultado:</h1>
+    <p class="h11" style="font-weight: bold;">Para pessoas com mais de 7 letras no nome</p>
+    <ul id="listaFinal2"></ul>
+
+</div>
+
+<div>
+
+    <h1 class="h11">Resultado em ordem alfabética:</h1>
+    <ul id="listaFinal3"></ul>
+
+</div>
 
 <script src="script.js"></script>
 </body>
