@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Lista de pessoas</h1>
+    <h1>Lista de votação</h1>
         <input type="text" placeholder="Insira o nome e idade." id="pessoas">
-        <p>Ex:João-23</p>
+         <button onclick="organizar()">Enviar</button>
+         <p>Ex:João-23</p>
         
-        <button onclick="organizar()">Enviar</button>
-        <button onclick="analisarLista()">Mostrar o mais novo e mais velho</button>
-    <ul id="lista"></ul>
+       
+    <ul id="listaFinal"></ul>
 
 
     <script src="script.js"></script>
