@@ -1,12 +1,11 @@
 
 const div = document.getElementById("resultado")
 
-
-
 function mostrar(result){
 
 let resultado_p = document.createElement("p")
 resultado_p.textContent = result
+div.textContent = ""
 div.appendChild(resultado_p)
 
 }
@@ -41,8 +40,22 @@ mostrar(n1 / n2)
 }
 
 function calcular(){
+
+if(document.getElementById("numero1").value == "" ||
+document.getElementById("numero2").value == "" || 
+isNaN(document.getElementById("numero1").value) ||
+isNaN(document.getElementById("numero2").value)
+){
+
+alert("Preencha os campos corretamente")
+return;
+}
+
 let n1 = Number(document.getElementById("numero1").value)
 let n2 = Number(document.getElementById("numero2").value)
+
+
+
 let operador = document.getElementById("op").value
 if(operador == "+"){somar(n1,n2)}
 else if(operador =="-"){subtrair(n1,n2)}
