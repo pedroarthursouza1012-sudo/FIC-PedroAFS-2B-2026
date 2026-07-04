@@ -1,0 +1,122 @@
+*{
+
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+
+}
+
+body{
+
+font-family: "Lexend Deca", sans-serif;
+  background:#212121;
+}
+
+h1{
+
+padding: 5rem;
+font-size: 3rem;
+text-align: center;
+    background-color:rgb(127, 13, 13);
+color: rgb(255, 247, 0);
+text-shadow: 0 5px 0 black;
+border-radius: 0% 0% 30% 30%;
+text-decoration: underline;
+}
+
+input{
+
+padding: 0.5rem;
+margin: 1rem;
+border-radius: 15px;
+box-shadow: 0 0 3px black;
+}
+
+button{
+
+border-radius: 50px;
+padding: 0.5rem;
+    background-color:rgb(255, 247, 0);
+box-shadow: 0 4px 0 rgb(63, 60, 0);
+transition: 0.4s;
+}
+
+button:hover{
+
+box-shadow: 0 2px 0 rgb(63, 60, 0);
+transform: translateY(2px);
+       background-color:rgb(215, 208, 0);
+
+
+
+}
+
+button:active{
+
+box-shadow: 0 0px 0 rgb(63, 60, 0);
+transform: translateY(4px);
+       background-color:rgb(171, 165, 0);
+
+
+}
+
+p{
+
+
+border: 2px rgb(155, 0, 0) solid;
+ width: fit-content;
+margin: 0 auto;
+padding: 1rem;
+border-radius: 40px 5px 40px 5px;
+margin-bottom: 1.5rem;
+margin-top: 1rem;
+background-color: rgba(127, 13, 13, 0.823);
+color: rgb(255, 247, 0);
+text-shadow: 0 0 3px rgb(255, 247, 0);
+box-shadow: 0 0 4px rgb(255, 0, 0);
+}
+
+ul{
+
+list-style: none;
+padding: 1rem;
+border: 2px black solid;
+border-radius: 15px;
+max-width: 50%;
+box-shadow: 15px 15px 0 black;
+    background: linear-gradient(to top, #b6a871, #ffee97);
+font-weight: bold;
+justify-content: center;
+ width: fit-content;
+  margin: 0 auto;
+  transition: 0.5s ease;
+}
+
+.hidden{
+
+opacity: 0;
+transform: translateY(10px);
+pointer-events: none;
+}
+
+.show{
+
+opacity: 1;
+transform: translateY(0);
+
+}
+
+
+.principal{
+
+text-align: center;
+margin-top: 3rem;
+
+}
+
+li{
+
+    margin: 1rem;
+
+}
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Média de notas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<div id="modal" class="modal">
+    <div class="modal-conteudo">
+        <h2>Bem-vindo!</h2>
+
+        <input type="text" id="nomeAluno" placeholder="Digite seu nome">
+
+        <input type="number" id="idadeAluno" placeholder="Digite sua idade">
+
+        <button class="btn-modal">
+            Continuar
+        </button>
+    </div>
+</div>
+
+    <h1>Selecione a máteria</h1>    
+    <div class="segmento">
+    <button class="opcao ativa">Português</button>
+    <button class="opcao">Matemática</button>
+    <button class="opcao">Inglês</button>
+    <button class="opcao">Prog. Web</button>
+    <button class="opcao">Biologia</button>
+</div>
+   
+    <h2 class="h2-notas">Digite suas respectivas notas</h2>
+
+    <div class="notas">
+    <input type="number" placeholder="1° nota" id="nota1" class="n1">
+    <input type="number" placeholder="2° nota" id="nota2" class="n2">
+    <input type="number" placeholder="3° nota" id="nota3" class="n3">
+    <input type="number" placeholder="4° nota" id="nota4" class="n4">
+    </div>
+    <br>
+
+    <button id="mostrar_media" class="btn">Mostrar média anual</button>
+
+    <h2>Média:</h2>
+    <div id="media"></div>
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
