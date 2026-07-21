@@ -1,4 +1,3 @@
-console.log("funcionando")
 
 const returnBtn = document.getElementById("return")
 
