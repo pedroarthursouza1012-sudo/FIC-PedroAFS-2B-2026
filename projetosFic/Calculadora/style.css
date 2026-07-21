@@ -1,0 +1,143 @@
+*{
+
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+
+}
+
+html, body {
+    min-height: 100%;
+  }
+
+body{
+
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+overflow-x: hidden;
+background:
+    radial-gradient(circle at top left, #dfe9f3, transparent 40%),
+    radial-gradient(circle at bottom right, #cfd9df, transparent 40%),
+    #f5f7fa;
+
+}
+
+h1{
+
+text-align: center;
+padding: 2.5rem;
+border: 1px solid black;
+border-radius: 25px;
+width: min(500px, 90%);
+margin: auto;
+margin-top: 2.5rem;
+margin-bottom: 2.5rem;
+background: linear-gradient(to top, rgb(182, 9, 9),rgb(255, 32, 32));
+color: rgb(255, 234, 0);
+box-shadow: 0 10px 0 black;
+
+}
+
+.nums{
+
+justify-content: center;
+display: flex;
+gap: 1rem;
+
+}
+
+.nums input{
+
+border-radius: 40px;
+padding: 1rem;
+border: 1px solid rgba(0, 0, 0, 0.331);
+background: #ffffff;
+box-shadow: 0 5px 0 black ,inset 0 0 3px black;
+}
+
+.p-burguer{
+
+text-align: center;
+padding: 2rem;
+border: 1px solid black;
+border-radius: 70px 70px 10px 10px;
+width: min(300px, 90%);
+margin: auto;
+margin-top: 2rem;
+background-color: rgb(255, 211, 154);
+box-shadow: inset 0 0 10px rgb(192, 122, 31);
+font-weight: bold;
+}
+
+select{
+
+display: flex;
+margin: auto;
+padding: 1rem;
+border-radius: 25px;
+text-align: center;
+width: min(300px, 90%);
+background-color: rgb(255, 208, 0);
+box-shadow: inset 0 0 10px rgb(255, 123, 0);
+
+}
+
+button{
+
+display: flex;
+margin: auto;
+padding: 1rem;
+border-radius: 25px;
+text-align: center;
+width: min(300px, 90%);
+justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;     /* Centraliza verticalmente */
+background-color: rgb(105, 27, 27);
+font-weight: 600;
+color: white;
+border: 2px solid red;
+margin-top: 7px;
+margin-bottom: 13px;
+box-shadow: 0 5px 0 black ,inset 0 0 5px rgb(255, 0, 0);
+font-size: 1rem;
+transition: 0.4s;
+}
+
+button:active{
+
+transform: translateY(5px);
+box-shadow: 0 0px 0 black ,inset 0 0 5px rgb(255, 0, 0);
+
+
+}
+
+h2{
+
+text-align: center;
+padding: 2rem;
+border: 1px solid black;
+border-radius: 10px 10px 70px 70px;
+width: min(300px, 90%);
+margin: auto;
+background-color: rgb(255, 211, 154);
+box-shadow: inset 0 0 10px rgb(192, 122, 31);
+
+}
+
+#resultado{
+
+padding: 2rem;
+text-align: center;
+border: 1px solid black;
+border-radius: 25px;
+width: min(300px, 90%);
+margin: auto;
+margin-top: 1rem;
+background: linear-gradient(to top, rgb(182, 9, 9),rgb(255, 32, 32));
+color: rgb(255, 234, 0);
+font-size: 1.5rem
+}
+
+#resultado:empty{
+
+    display: none;
+}

@@ -1,0 +1,99 @@
+*{
+
+box-sizing: border-box;
+padding: 0;
+margin: 0;
+
+}
+
+body{
+
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.dark{
+
+background-color: rgb(39, 39, 50);
+
+}
+
+h1{
+
+margin: 2rem;
+font-size: 2.5rem;
+border: 1px black solid;
+border-radius: 35px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.357);
+padding: 1rem;
+width: min(300px,90%);
+background: linear-gradient(to top, red,rgb(128, 0, 0));
+}
+
+.p{
+
+display: none;
+padding: 1rem;
+
+}
+
+.p.show{
+
+display: block;
+padding: 1rem;
+border: 1px black solid;
+width: min(500px,90%);
+border-radius: 15px;
+background: linear-gradient(to top, rgb(218, 218, 218),rgb(255, 255, 255));
+box-shadow: 0 5px 0 black;
+margin: 1rem;
+}
+
+#spider1-img{
+
+display: none;
+margin: 1rem;
+border-radius: 15px;
+box-shadow: 0 4px 9px black;
+
+}
+
+#spider3-img{
+
+display: block;
+margin: 1rem;
+border-radius: 15px;
+box-shadow: 0 4px 9px black;
+}
+
+.btn{
+
+margin: 1rem;
+padding: 1rem;
+font-weight: 600;
+border-radius: 15px;
+background: linear-gradient(to top, rgb(218, 218, 218),rgb(255, 255, 255));
+box-shadow: 0 5px 0 black;
+transition: 0.4s;
+cursor: pointer;
+
+}
+
+.btn:active{
+
+transform: translateY(3px);
+box-shadow: 0 0px 0 black;
+
+}
+
+.data{
+margin: 1rem;
+padding: 1rem;
+gap: 1rem;
+border: 1px black solid;
+width: min(300px,90%);
+border-radius: 15px;
+background: linear-gradient(to top, rgb(218, 218, 218),rgb(255, 255, 255));
+box-shadow: 0 5px 0 black;
+
+}
