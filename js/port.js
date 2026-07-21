@@ -16,21 +16,24 @@ window.addEventListener("load", () => {
 });
 
 // Clique no botão
-btn.addEventListener("click", () => {
-    intro.style.transform = "translateY(-100%)";
+if (btn) {
+    btn.addEventListener("click", () => {
+        intro.style.transform = "translateY(-100%)";
 
-    sessionStorage.setItem("introJaVisto", "true");
+        sessionStorage.setItem("introJaVisto", "true");
 
-    setTimeout(() => {
-        intro.style.display = "none";
-    }, 800);
-});
+        setTimeout(() => {
+            intro.style.display = "none";
+        }, 800);
+    });
+}
 
-pastaFic.addEventListener("click",()=>{
-
-window.open("projetos-fic.html","_blank")
-alert("Funcionou!");
-})
+if (pastaFic) {
+    pastaFic.addEventListener("click", () => {
+        window.open("projetos-fic.html", "_blank");
+        alert("Funcionou!");
+    });
+}
 
 
 
