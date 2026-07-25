@@ -31,7 +31,7 @@ if (btn) {
 if (pastaFic) {
     pastaFic.addEventListener("click", () => {
         window.open("projetos-fic.html", "_blank");
-        alert("Funcionou!");
+        
     });
 }
 
