@@ -146,6 +146,13 @@ max-width: 800px;
     grid-row: 3;
 }
 
+.projeto-6 {
+
+    grid-column: 6 / 10;
+
+    grid-row: 4;
+}
+
   .pasta{
 
     padding: 1rem;
@@ -454,7 +461,8 @@ max-width: 800px;
     .projeto-2,
     .projeto-3,
     .projeto-4,
-    .projeto-5 {
+    .projeto-5,
+    .projeto-6 {
 
         width: 100%;
 
