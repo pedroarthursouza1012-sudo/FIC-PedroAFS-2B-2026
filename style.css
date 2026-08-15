@@ -734,16 +734,6 @@ display: block;
 
    
 
-     #home:hover,
-  #sobre:hover,
-  #projetos:hover,
-  #contato:hover
-  {
-
-transform: translateY(-8px) scale(1.02);
-box-shadow: 10px 15px 0px black;
-
-  }
 
   .contato-botoes {
   flex-direction: column;
