@@ -55,7 +55,7 @@ max-width: 800px;
     background-color: rgba(209, 233, 255, 0.25);
     backdrop-filter: blur(5px);
 
-    box-shadow: 15px 15px 1px black;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.35);
 
     display: flex;
     align-items: center;
@@ -153,48 +153,6 @@ max-width: 800px;
     grid-row: 4;
 }
 
-  .pasta{
-
-    padding: 1rem;
-    background: linear-gradient(to bottom, rgb(21, 22, 23)
-    ,#3c3e44);
-    display: block;
-
-  }
-
-  .projetos-pasta{
-
-    border: 1px black solid;
-    border-radius: 25px;
-    overflow: hidden;
-    text-align: center;
-    box-shadow: 5px 7px 0 black;
-    background-color: #3c3e44;
-    cursor: pointer;
-    transition: .2s ease-in-out;
-  }
-
-  .p-pasta{
-
-     margin: 0;
-    padding: .5rem;
-    background-color: #ffffffb0;
-  backdrop-filter: blur(5px);
-    box-shadow: 0 0 4px white, inset 0 0 5px white;
-    color: black;
-    font-size: 1.2rem;
-    border: 1px white solid;
-    border-radius: 0;
-    
-  }
-
-  .projetos-pasta:active{
-
-    transform: translateY(3px);
-    box-shadow: 0px 0px 0, inset 0 0 3px black;
-    
-
-  }
 
   .projetos-div{
 

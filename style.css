@@ -481,7 +481,7 @@ display: block;
     border-radius: 25px;
     overflow: hidden;
     text-align: center;
-    box-shadow: 5px 7px 0 black;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.35);
     background-color: #3c3e44;
     cursor: pointer;
     transition: .2s ease-in-out;
@@ -715,7 +715,7 @@ display: block;
       flex-direction: column;
       text-align: center;
       padding: 2rem 1rem;
-      box-shadow: 6px 6px 1px black;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.35);
             width:min(90%, 900px);
 
     }
