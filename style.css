@@ -1,4 +1,4 @@
-  * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -256,37 +256,41 @@ height: 100%;
 
   /* ================= HEADER ================= */
 
-  header {
-    background: linear-gradient(to right, #2c2f3a, #4b4f66);
-    backdrop-filter: blur(5px);
-
+header {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: min(90%, 1100px);
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    padding: 1rem 3rem;
-    border: 4px solid black;
-  }
+    padding: 0.8rem 1.2rem;
+
+    background: rgba(15, 17, 23, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+
+    z-index: 100;
+}
 
   /* título */
-  #H1 {
-    font-size: 2.2rem;
+#H1 {
+    font-size: 2rem;
     color: white;
-
-    padding: 0.8rem;
-    border-radius: 1rem;
-
-    background-color: rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 4px;
-
-    text-shadow: 0 0 3px rgba(255,255,255,0.5);
-  }
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    text-shadow: none;
+}
 
   /* menu */
   nav ul {
@@ -295,24 +299,35 @@ height: 100%;
     list-style: none;
   }
 
-  .menu-btn {
+.menu-btn {
+    position: relative;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
+    padding: 0.6rem 0.4rem;
+    transition: color 0.25s ease;
+}
+
+.menu-btn:hover {
     color: white;
+}
 
-    padding: 0.8rem 1rem;
-    border-radius: 1rem;
+.menu-btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
 
-    background-color: rgb(63, 64, 74);
-    border: 1px solid rgb(33, 33, 38);
+    width: 0;
+    height: 2px;
 
-    transition: 0.3s;
-    display: inline-block;
-  }
+    background: white;
+    transform: translateX(-50%);
+    transition: width 0.25s ease;
+}
 
-  .menu-btn:hover {
-    background-color: rgb(87, 88, 102);
-    transform: scale(1.08);
-  }
+.menu-btn:hover::after {
+    width: 70%;
+}
 
   /* ================= SEÇÕES ================= */
 
@@ -331,7 +346,7 @@ max-width: 800px;
     background-color: rgba(209, 233, 255, 0.25);
     backdrop-filter: blur(5px);
 
-    box-shadow: 15px 15px 1px black;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.35);
 
     display: flex;
     align-items: center;
@@ -620,19 +635,80 @@ display: block;
   /*======= RESPONSIVIDADE =======*/
   /*==============================*/
 
-  /*=== TELA PEQUENA ===*/
+  /*=== TELA PEQUENA (320px – 768px) ===*/
+
 
   @media (max-width:768px){
+
+  
+    html, body {
+      overflow-x: hidden;
+    }
+
+    /* HEADER*/
 
     header{
       flex-direction: column;
       display:flex;
+      gap: 0.6rem;
+      width: min(94%, 1100px);
+      padding: 0.7rem 1rem;
+      top: 10px;
     }
 
-    header a{
-      display:flex;
-      margin-top: 0.8rem;
-      font-size: 0.7rem;
+    #H1 {
+      font-size: 1.3rem;
+      text-align: center;
+    }
+
+    nav ul {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem 0.8rem;
+    }
+
+    .menu-btn {
+      padding: 0.4rem 0.3rem;
+      font-size: 0.9rem;
+    }
+
+
+    body {
+      padding-top: 0;
+    }
+
+    main{
+      padding-top: 150px;
+    }
+
+   
+    .side {
+      width: 50px;
+    }
+
+    .track {
+      gap: 1.2rem;
+    }
+
+    .track img {
+      width: 32px;
+    }
+
+    .center {
+      width: 100%;
+      padding: 0 60px;
+      gap: 1.2rem;
+      text-align: center;
+    }
+
+    .intro-text {
+      font-size: clamp(1.3rem, 6vw, 1.8rem);
+    }
+
+    .intro-btn {
+      padding: 0.7rem 1.1rem;
+      font-size: 0.95rem;
+      white-space: nowrap;
     }
 
     #home, #sobre, #projetos, #contato {
@@ -648,18 +724,10 @@ display: block;
       max-width: 100%;
       height: auto;
     }
-  
-    body {
-      padding-top: 160px;
-    }
-
-    header {
-      padding: 1rem;
-    }
 
     #home {
       justify-content: flex-start;
-      margin-top: 60px;
+      margin-top: 20px;
 
 
     }
@@ -677,16 +745,17 @@ box-shadow: 10px 15px 0px black;
 
   }
 
-main{
-
-  padding-top: 10px;
-
-  }
-
   .contato-botoes {
   flex-direction: column;
   align-items: center;
 }
+
+  
+  .botao {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
 
   #projetos {
     flex-direction: column;

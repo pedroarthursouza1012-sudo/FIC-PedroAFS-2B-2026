@@ -1,0 +1,406 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: "Raleway", sans-serif;
+
+}
+
+body {
+   background-color: #080a0f;
+  background-image: url("../img/dark-background(1).jpg");
+  background-size: 100% auto;
+  background-position: center top;
+  background-repeat: repeat-y;
+}
+
+/* garante que o fundo não corte */
+html,
+body {
+  min-height: 100%;
+}
+
+/*=====================*/
+/*===== ANIMAÇÕES =====*/
+/*=====================*/
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeText {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-btn {
+  from {
+    opacity: 0;
+    transform: scale(0.6) translateY(100px);
+    box-shadow: white 0px 0px 2rem;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shine {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes scrollUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+/*=============================================*/
+/*=============================================*/
+/*=============================================*/
+
+header {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: min(90%, 1100px);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.8rem 1.2rem;
+
+  background: rgba(15, 17, 23, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+
+  z-index: 100;
+}
+
+/* título */
+#H1 {
+  font-size: 2rem;
+  color: white;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/* menu */
+nav ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+.menu-btn {
+  position: relative;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  padding: 0.6rem 0.4rem;
+  transition: color 0.25s ease;
+}
+
+.menu-btn:hover {
+  color: white;
+}
+
+.menu-btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  width: 0;
+  height: 2px;
+
+  background: white;
+  transform: translateX(-50%);
+  transition: width 0.25s ease;
+}
+
+.menu-btn:hover::after {
+  width: 70%;
+}
+
+/* ================= SEÇÕES ================= */
+
+#home,
+#sobre,
+#projetos,
+#contato {
+  scroll-margin-top: 120px;
+
+  margin: 6rem auto;
+  padding: 3rem;
+
+  width: 50%;
+  max-width: 800px;
+
+  border-radius: 1.5rem;
+  border: 1px solid;
+
+  background-color: rgba(209, 233, 255, 0.25);
+  backdrop-filter: blur(5px);
+
+  box-shadow: 15px 15px 1px black;
+
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  animation: fadeUp 0.5s ease-out;
+  transition: 0.5s;
+  transform-style: preserve-3d;
+}
+
+main {
+  padding-top: 120px;
+}
+
+#sobre {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.hero {
+    position: relative;
+    min-height: calc(100vh - 120px);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+
+    align-items: center;
+    justify-items: center;
+
+    padding: 3rem 6%;
+    margin-top: 2rem;
+}
+
+.hero-name {
+  position: absolute;
+  z-index: 1;
+
+  font-size: clamp(10rem, 40vh, 20rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  white-space: nowrap;
+
+  color: rgba(255, 255, 255, 0.07);
+
+  text-shadow:
+    0 1px 1px rgba(255, 255, 255, 0.15),
+    0 15px 30px rgba(0, 0, 0, 0.4);
+
+  user-select: none;
+  pointer-events: none;
+
+  animation: fadeUp 1s ease-out;
+}
+
+.imagem {
+  position: absolute;
+  z-index: 3;
+
+  width: min(750px, 80vw);
+
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 40px rgba(30, 90, 180, 0.2));
+    animation: fadeUp 0.5s ease-out;
+}
+
+h2{
+
+    text-decoration: underline;
+
+}
+
+.about-text {
+    position: relative;
+    z-index: 4;
+
+    width: min(300px, 90%);
+
+    color: rgb(231, 231, 231);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.415),
+    inset 4px 3px 3px rgba(255, 255, 255, 0.135);
+    padding: 1.5rem;
+    border-radius: 50px;
+    background-color: rgba(240, 248, 255, 0.047);
+    backdrop-filter: blur(5px);
+    margin: -1rem;
+    letter-spacing: 1px;
+}
+
+.top-left {
+    justify-self: start;
+    align-self: start;
+        animation: fadeUp 0.5s ease-out;
+
+}
+
+.top-right {
+    justify-self: end;
+    align-self: start;
+    text-align: right;
+        animation: fadeUp 01s ease-out;
+
+}
+
+.bottom-left {
+    justify-self: start;
+    align-self: end;
+        animation: fadeUp 0.8s ease-out;
+
+}
+
+.bottom-right {
+    justify-self: end;
+    align-self: end;
+    text-align: right;
+        animation: fadeUp 1.5s ease-out;
+
+}
+
+/*======================================================*/
+/*===== RESPONSIVIDADE MOBILE (320px – 768px) =====*/
+/*======================================================*/
+
+@media (max-width: 768px) {
+
+
+  html,
+  body {
+    overflow-x: hidden;
+    background-size: auto 100%;
+  }
+
+
+  header {
+    flex-direction: column;
+    gap: 0.6rem;
+    width: min(94%, 1100px);
+    padding: 0.7rem 1rem;
+    top: 10px;
+  }
+
+  #H1 {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem 0.8rem;
+  }
+
+  .menu-btn {
+    padding: 0.4rem 0.3rem;
+    font-size: 0.9rem;
+  }
+
+  main {
+    padding-top: 150px;
+  }
+
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: unset;
+    min-height: unset;
+    padding: 2rem 5%;
+    margin-top: 1rem;
+    gap: 1.5rem;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hero-name {
+    position: static;
+    display: block;
+    font-size: clamp(3.5rem, 18vw, 6rem);
+    text-align: center;
+    white-space: normal;
+    order: -1;
+  }
+
+  .imagem {
+    position: static;
+    width: min(750px, 85vw);
+    order: 3;
+  }
+
+
+  .about-text {
+    width: 100%;
+    max-width: 340px;
+    margin: 0;
+    text-align: left;
+  }
+
+  .top-left,
+  .top-right,
+  .bottom-left,
+  .bottom-right {
+    justify-self: unset;
+    align-self: unset;
+    text-align: left;
+  }
+
+ */
+  .top-left { order: 0; }
+  .top-right { order: 1; }
+  .bottom-left { order: 4; }
+  .bottom-right { order: 5; }
+
+
+  #home,
+  #sobre,
+  #projetos,
+  #contato {
+    width: 90%;
+    padding: 1.5rem;
+    margin: 3rem auto;
+    flex-direction: column;
+    text-align: center;
+  }
+}
