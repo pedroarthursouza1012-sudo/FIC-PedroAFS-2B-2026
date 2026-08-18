@@ -1,28 +1,25 @@
 const intro = document.getElementById("intro");
-const btn = document.getElementById("openSite");
-const titulo = document.querySelector(".intro-text");
+const intro_title = document.querySelector(".intro-title")
+const pastaFic = document.getElementById("folderFic")
+
+
+window.history.scrollRestoration = "manual";
+window.scrollTo(0, 0);
 
 // Se já viu a intro
 if (sessionStorage.getItem("introJaVisto")) {
+    
     intro.style.display = "none";
 }
 
-// Ativa underline ao carregar
-window.addEventListener("load", () => {
-    setTimeout(() => {
-        titulo.classList.add("ativo");
-    }, 500);
-});
+intro_title.addEventListener("animationend",()=>{
 
-// Clique no botão
-btn.addEventListener("click", () => {
-    intro.style.transform = "translateY(-100%)";
+intro.style.opacity=0;
+ intro.style.pointerEvents = "none";
+sessionStorage.setItem("introJaVisto","true");
 
-    sessionStorage.setItem("introJaVisto", "true");
+})
 
-    setTimeout(() => {
-        intro.style.display = "none";
-    }, 800);
-});
+
 
 

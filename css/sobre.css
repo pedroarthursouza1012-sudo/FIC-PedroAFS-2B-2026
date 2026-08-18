@@ -200,7 +200,7 @@ main {
 
 .hero {
     position: relative;
-    min-height: calc(100vh - 120px);
+    min-height: 750px;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -239,6 +239,10 @@ main {
   z-index: 3;
 
   width: min(750px, 80vw);
+
+  
+    bottom: 0;
+  
 
   filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.55))
     drop-shadow(0 0 40px rgba(30, 90, 180, 0.2));
@@ -342,17 +346,26 @@ h2{
 
 
   .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: unset;
-    min-height: unset;
-    padding: 2rem 5%;
-    margin-top: 1rem;
-    gap: 1.5rem;
-    width: 100%;
-    overflow: hidden;
-  }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        min-height: auto;
+        height: auto;
+
+        padding: 2rem 5%;
+        margin-top: 1rem;
+        gap: 1.2rem;
+
+        width: 100%;
+    }
+
+    .imagem {
+        position: static;
+        width: min(750px, 85vw);
+        transform: none;
+        order: 3;
+    }
 
   .hero-name {
     position: static;
@@ -363,11 +376,7 @@ h2{
     order: -1;
   }
 
-  .imagem {
-    position: static;
-    width: min(750px, 85vw);
-    order: 3;
-  }
+
 
 
   .about-text {
@@ -386,7 +395,7 @@ h2{
     text-align: left;
   }
 
- */
+
   .top-left { order: 0; }
   .top-right { order: 1; }
   .bottom-left { order: 4; }
