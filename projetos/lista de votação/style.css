@@ -120,3 +120,20 @@ li{
 
 }
 
+.vote{
+
+border: 2px rgb(49, 49, 49) solid;
+ width: fit-content;
+margin: 0 auto;
+padding: 1rem;
+border-radius: 40px;
+margin-bottom: 1.5rem;
+margin-top: 1rem;
+background-color: rgba(72, 67, 67, 0.823);
+color: rgb(0, 0, 0);
+text-shadow: 0 0 3px rgba(0, 0, 0, 0.088);
+box-shadow: 0 0 4px rgb(125, 106, 106);
+
+
+}
+
