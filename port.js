@@ -7,7 +7,7 @@ window.history.scrollRestoration = "manual";
 window.scrollTo(0, 0);
 
 // Se já viu a intro
-if (sessionStorage.getItem("introJaVisto")) {
+if (localStorage.getItem("introJaVisto")) {
     
     intro.style.display = "none";
 }
@@ -16,7 +16,7 @@ intro_title.addEventListener("animationend",()=>{
 
 intro.style.opacity=0;
  intro.style.pointerEvents = "none";
-sessionStorage.setItem("introJaVisto","true");
+localStorage.setItem("introJaVisto","true");
 
 })
 
