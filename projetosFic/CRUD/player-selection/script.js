@@ -4,6 +4,7 @@ const leftButton = document.getElementById("left");
 const rightButton = document.getElementById("right");
 
 const play = document.getElementById("jogar")
+const back = document.getElementById("back")
 
 let current = 1; // player-2 começa com "on"
 
@@ -18,6 +19,11 @@ function update() {
     }
   });
 }
+
+back.addEventListener("click", () => {
+
+  history.back();
+})
 
 leftButton.addEventListener("click", () => {
   current = (current - 1 + players.length) % players.length;
