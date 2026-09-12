@@ -229,6 +229,19 @@ addBtn.addEventListener("click",async ()=>{
 
     if(modoEdicao){
 
+        const valor = Number(nota.value);
+
+        if (
+            nota.value.trim() === "" ||
+            isNaN(valor) ||
+            valor < 0 ||
+            valor > 10
+        ) {
+            alert("Adicione uma nota válida!");
+            nota.value = "";
+            return;
+        }
+
         pokemonEditando.nota = Number(nota.value);
         pokemonEditando.favorito = favoritoInput.checked
 
@@ -279,6 +292,19 @@ addBtn.addEventListener("click",async ()=>{
 
 
         const nome = input.value.toLowerCase().trim();
+
+        const valor = Number(nota.value);
+
+        if (
+            nota.value.trim() === "" ||
+            isNaN(valor) ||
+            valor < 0 ||
+            valor > 10
+        ) {
+            alert("Adicione uma nota válida!");
+            nota.value = "";
+            return;
+        }
 
 
         if(pokemonsAdicionados.some(pokemon => pokemon.nome === nome)){

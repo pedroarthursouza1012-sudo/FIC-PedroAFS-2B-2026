@@ -12,10 +12,21 @@
 
 <title>Jogo</title>
 </head>
-<body>
+<body id="body">
     <button id="back">◀ Voltar</button>
-    <h1>Jogo principal</h1>
+    <h1>PokeRun</h1>
+    
     <div class="tela">
+
+        <div id="gameOver">
+            <h2>Game over</h2>
+            <p>Pontuação: <span id="pontuacaoFinal">0000000</span></p>
+
+            <button id="jogarNovamente">Jogar novamente</button>
+        </div>
+
+
+        <div id="contadorBox"></div>
         <div class="nuvem"></div>
         <div class="nuvem2"></div>
         <div class="nuvem3"></div>
@@ -23,9 +34,15 @@
         <div class="nuvem5"></div>
         <div class="nuvem6"></div>
         
+            <div class="montanhas"></div>
             <div class="personagem">
                 <img src="" id="player">
             </div>
+
+            <div class="tree">
+                <img src="../Infinity run/img/pokemon-fire-red-tree.png" alt="">
+            </div>
+
             <div class="floor">
 
                 <div class="grass">
