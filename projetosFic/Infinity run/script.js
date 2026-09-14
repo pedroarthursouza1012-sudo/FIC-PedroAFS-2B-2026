@@ -4,6 +4,10 @@ const contadorBox = document.getElementById("contadorBox");
 const tela = document.querySelector(".tela");
 const player = document.getElementById("player");
 const pokemonEscolhido = JSON.parse(localStorage.getItem("pokemonEscolhido"));
+const sol = document.querySelector(".sol");
+const lua = document.querySelector(".lua");
+const estrelas = document.querySelector(".estrelas");
+const noiteOverlay = document.querySelector(".noite-overlay");
 
 let jogoIniciado = false
 
@@ -38,6 +42,64 @@ const gameOverScreen = document.getElementById("gameOver");
 const pontuacaoFinal = document.getElementById("pontuacaoFinal");
 const jogarNovamente = document.getElementById("jogarNovamente");
 let jogoTerminou = false;
+
+
+for (let i = 0; i < 60; i++) {
+
+    const estrela = document.createElement("div");
+
+    estrela.classList.add("estrela");
+
+    estrela.style.left = Math.random() * 100 + "%";
+    estrela.style.top = Math.random() * 70 + "%";
+
+    estrela.style.animationDelay =
+        Math.random() * 2 + "s";
+
+    estrelas.appendChild(estrela);
+}
+
+function atualizarCicloDiaNoite(tempo) {
+
+    if (tempo < 150) {
+
+        // DIA
+        tela.classList.remove("noite");
+
+        sol.style.bottom = "25%";
+
+        noiteOverlay.style.opacity = "0";
+
+    }
+
+    else if (tempo <300) {
+
+        // PÔR DO SOL
+        tela.classList.remove("noite");
+
+        const progresso = (tempo - 150) / 150;
+
+        // Sol vai de 25% até -5%
+        const posicao = 25 - (progresso * 30);
+
+        sol.style.bottom = posicao + "%";
+
+        // Escurece gradualmente
+        noiteOverlay.style.opacity = progresso * 0.45;
+
+    }
+
+    else {
+
+        // NOITE
+        tela.classList.add("noite");
+
+        sol.style.bottom = "-20%";
+
+        noiteOverlay.style.opacity = "0.7";
+
+    }
+}
 
 nuvens.forEach((nuvem) => {
     nuvensX.push(parseFloat(getComputedStyle(nuvem).left));
@@ -197,6 +259,8 @@ function contador() {
 
         contadorP.textContent =
             tempo.toString().padStart(7, "0");
+
+            atualizarCicloDiaNoite(tempo)
 
     }, 100);
 }
