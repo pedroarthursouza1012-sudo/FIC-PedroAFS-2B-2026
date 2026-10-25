@@ -321,7 +321,7 @@ nav ul {
   margin: 6rem auto;
   padding: 3rem;
 
-  width: 50%;
+  width: 100%;
   max-width: 800px;
 
   border-radius: 1.5rem;
@@ -416,16 +416,23 @@ h3 {
 #projetos {
   flex-direction: column;
   align-items: center;
-  width: min(500px, 100%);
+  width:fit-content;
   border-radius: 50px;
+  height: 100px;
+  align-items: center;
+  overflow: hidden;
+  place-content: center;
+  background-color: #2c2f3ac4;
+  box-shadow: inset 2px 2px 3px rgba(255, 255, 255, 0.445),
+  inset -2px -2px 3px rgba(0, 0, 0, 0.295);
+  backdrop-filter: blur(8px);
 }
 #projetos h2 {
   font-size: 1.8rem;
-  background-color: #2c2f3a;
-  color: white;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.432);
   border-radius: 25px;
   padding: 1.5rem;
-  width: min(300px, 100%);
   text-align: center;
 }
 
@@ -453,6 +460,11 @@ h3 {
   background-color: #3c3e44;
   cursor: pointer;
   transition: 0.2s ease-in-out;
+}
+
+.projetos-pasta:hover{
+  transform: translateY(-2px);
+  filter:contrast(1.15)
 }
 
 .p-pasta {
@@ -644,7 +656,7 @@ h3 {
     height: auto;
   }
 
-  #projetos,
+  
   #contato {
     flex-direction: column;
     text-align: center;
@@ -674,22 +686,6 @@ h3 {
     text-align: center;
   }
 
-  #projetos {
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
-    padding: 1rem;
-  }
-
-  #projetos h2 {
-    font-size: clamp(1.4rem, 5vw, 1.8rem);
-    background-color: #2c2f3a;
-    color: white;
-    border-radius: 1rem;
-    padding: 1rem;
-    width: min(90%, 300px);
-    text-align: center;
-  }
 
   .projetos {
     align-items: center;

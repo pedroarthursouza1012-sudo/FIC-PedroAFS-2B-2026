@@ -17,6 +17,11 @@ function atualizarContador(){
 
 }
 
+window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+        window.location.reload();
+    }
+});
 
 // CARREGAR SALVOS
 function carregarSalvos(){
@@ -31,6 +36,7 @@ function carregarSalvos(){
 
         adicionarEventoExcluir(card, pokemon.nome);
         adicionarEventoEditar(card, pokemon);
+        adicionarEventoJogar(card, pokemon);
 
     });
 
@@ -134,39 +140,36 @@ async function buscarDescricao(nome){
 
 
 // CRIAR CARD
-function criarCard(pokemon){
 
+function criarCard(pokemon) {
     const card = document.createElement("div");
-
-    card.classList.add("card")
+    card.classList.add("card");
 
     card.innerHTML = `
-   
-    <img src="${pokemon.imagem}">
+        <div class="cardInfo">
+            <img src="${pokemon.imagem}" alt="${pokemon.nome}">
 
-    <h2>Nome: ${pokemon.nome}</h2>
+            <h2>${pokemon.nome}</h2>
+            <p class="numero">#${String(pokemon.id).padStart(3, "0")}</p>
+            <p class="tipo">${pokemon.tipo}</p>
+            <p class="nota">Nota: ${pokemon.nota}/10</p>
+            <p class="favorito">Favorito: ${pokemon.favorito ? "✅" : "❌"}</p>
+        </div>
 
-    <p>Número: ${pokemon.id}</p>
+        <div class="cardConteudo">
+            <p class="descricao">${pokemon.descricao}</p>
 
-    <p>Tipo: ${pokemon.tipo}</p>
-
-    <p>Descrição: ${pokemon.descricao}</p>
-
-    <p>Nota: ${pokemon.nota}</p>
-
-    <p>Favorito: ${pokemon.favorito ? "✅":"❌"}</p>
-
-    <div class="buttons">
-    <button class="excluir">Excluir</button>
-    <button class="editar">Editar</button>
-    </div>
-   
+            <div class="buttons">
+                <button class="jogar">Jogar</button>
+                <button class="editar">Editar</button>
+                <button class="excluir">Excluir</button>
+            </div>
+        </div>
     `;
 
-
     return card;
-
 }
+
 
 
 // EVENTO DE EXCLUIR
@@ -223,6 +226,16 @@ window.scrollTo({
 
 }
 
+function adicionarEventoJogar(card, pokemon) {
+    const btnJogar = card.querySelector(".jogar");
+
+    btnJogar.addEventListener("click", () => {
+        const caminho = `../Infinity%20run/index.html?pokemon=${pokemon.id}`;
+
+        window.location.href = caminho;
+    });
+}
+
 // ADICIONAR POKÉMON
 addBtn.addEventListener("click",async ()=>{
 
@@ -244,34 +257,18 @@ addBtn.addEventListener("click",async ()=>{
         pokemonEditando.nota = Number(nota.value);
         pokemonEditando.favorito = favoritoInput.checked
 
-        cardEditando.innerHTML = `
+        const novoCard = criarCard(pokemonEditando);
+        cardEditando.replaceWith(novoCard);
+        cardEditando = novoCard;
 
-        <img src="${pokemonEditando.imagem}">
-
-        <h2>Nome: ${pokemonEditando.nome}</h2>
-
-        <p>Número: ${pokemonEditando.id}</p>
-
-        <p>Tipo: ${pokemonEditando.tipo}</p>
-
-        <p>Descrição: ${pokemonEditando.descricao}</p>
-
-        <p>Nota: ${pokemonEditando.nota}</p>
-
-        <p>Favorito: ${pokemonEditando.favorito ? "✅":"❌"}</p>
-
-        <div class="buttons">
-        <button class="excluir">Excluir</button>
-        <button class="editar">Editar</button>
-        </div>
-
-        `;
+        adicionarEventoExcluir(novoCard, pokemonEditando.nome);
+        adicionarEventoEditar(novoCard, pokemonEditando);
+        adicionarEventoJogar(novoCard, pokemonEditando);
 
 
         localStorage.setItem("pokemons",JSON.stringify(pokemonsAdicionados));
 
-        adicionarEventoExcluir(cardEditando, pokemonEditando.nome);
-        adicionarEventoEditar(cardEditando, pokemonEditando);
+
 
         modoEdicao = false;
         pokemonEditando = null;
@@ -359,6 +356,7 @@ addBtn.addEventListener("click",async ()=>{
 
         adicionarEventoExcluir(card, pokemon.nome);
         adicionarEventoEditar(card, pokemon);
+        adicionarEventoJogar(card, pokemon);
         
         input.value = ""
         nota.value = ""

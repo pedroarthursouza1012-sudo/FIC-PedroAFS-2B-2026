@@ -3,7 +3,7 @@ const contadorP = document.createElement("p");
 const contadorBox = document.getElementById("contadorBox");
 const tela = document.querySelector(".tela");
 const player = document.getElementById("player");
-const pokemonEscolhido = JSON.parse(localStorage.getItem("pokemonEscolhido"));
+let pokemonEscolhido = null;
 const sol = document.querySelector(".sol");
 const lua = document.querySelector(".lua");
 const estrelas = document.querySelector(".estrelas");
@@ -229,19 +229,55 @@ function gameOver() {
 }
   
 
-if (!pokemonEscolhido) {
+async function carregarPokemonEscolhido() {
+    const params = new URLSearchParams(window.location.search);
+    const pokemonId = params.get("pokemon");
 
-    alert("Nenhum Pokémon selecionado!");
-    history.back();
+    try {
+        if (pokemonId !== null) {
+            if (!/^\d+$/.test(pokemonId) || Number(pokemonId) < 1) {
+                throw new Error("ID de Pokémon inválido.");
+            }
 
-} else {
+            const resposta = await fetch(
+                `https://pokeapi.co/api/v2/pokemon/${pokemonId}`
+            );
 
-    player.src = pokemonEscolhido.sprite;
+            if (!resposta.ok) {
+                throw new Error("Pokémon não encontrado.");
+            }
 
-    back.addEventListener("click", () => {
+            const dados = await resposta.json();
+
+            pokemonEscolhido = {
+                id: dados.id,
+                nome: dados.name,
+                sprite: dados.sprites.front_default
+            };
+        } else {
+            pokemonEscolhido = JSON.parse(
+                localStorage.getItem("pokemonEscolhido")
+            );
+        }
+
+        if (!pokemonEscolhido || !pokemonEscolhido.sprite) {
+            throw new Error("Nenhum Pokémon selecionado.");
+        }
+
+        player.src = pokemonEscolhido.sprite;
+
+    } catch (erro) {
+        console.error(erro);
+        alert("Não foi possível carregar o Pokémon.");
         history.back();
-    });
+    }
 }
+
+back.addEventListener("click", () => {
+    history.back();
+});
+
+carregarPokemonEscolhido();
 
 
 contadorP.classList.add("contador");
