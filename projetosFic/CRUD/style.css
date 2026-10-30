@@ -22,191 +22,347 @@ padding: 0;
   backdrop-filter: blur(10px);
 }
 
-body{
-  font-family: "Quicksand", sans-serif;     overflow-X: hidden;
-     background: url(img/c0c4e7b0-8b70-4f61-82e0-64f220610027.jpg);
-      background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    backdrop-filter: blur(5px);
-   
+@font-face {
+    font-family: 'MinhaFonte';
+    src: url('./fonts/Pokemon-Solid.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
 }
 
-  html, body {
+@keyframes open{
+
+0%{
+    transform: scaleY(0);
+
+}
+100%{
+    transform: scaleY(1);
+}}
+
+@keyframes fade-in{
+
+0%{
+    transform: translateY(20px);
+    opacity: 0;
+}
+100%{
+    transform: translateY(0);
+    opacity: 1;
+}}
+
+@keyframes revelar {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scaleY(.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+html {
     min-height: 100%;
-  }
+    background-color: #080D1B;
+}
 
-header h1,p{
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    overflow-x: hidden;
+    background: transparent;
+}
 
- font-family: "Elms Sans", sans-serif;    padding: .5rem;
-    width: min(90%,500px);
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            rgba(8, 13, 27, 0.45),
+            rgba(8, 13, 27, 0.85)
+        ),
+        url("img/1358522.png") center / cover no-repeat;
+
+    filter: saturate(1.3) brightness(0.8) blur(2px);
+}
+
+.start{
+
+margin: auto;
+display: flex;
+position: absolute;
+padding: 1rem;
+font-family: "Space Grotesk", sans-serif;
+background-color: #FFCA02;
+border: 4px rgb(224, 146, 0) solid;
+box-shadow: 0 7px 0 rgb(160, 92, 3),
+inset 2px 2px 3px rgba(255, 255, 255, 0.418),
+inset -2px -2px 3px rgba(0, 0, 0, 0.39);
+font-weight: 600;
+letter-spacing: 1px;
+transition: .2s ease-in-out;
+cursor: pointer;
+z-index: 1000;
+}
+
+.start:hover{
+    transform: translateY(2px);
+    box-shadow: 0 6px 0 rgb(160, 92, 3),
+    inset 2px 2px 3px rgba(255, 255, 255, 0.418),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.39);
+}
+.start:active{
+    transform: translateY(5px);
+    box-shadow: 0 0px 0 rgb(160, 92, 3),
+    inset 2px 2px 3px rgba(255, 255, 255, 0.418),
+    inset -2px -2px 3px rgba(0, 0, 0, 0.39);
+}
+
+.intro {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    background: black;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity .5s ease;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+}
+
+.intro.pronto {
+    opacity: 1;
+}
+
+.intro.finalizando {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.intro video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.site {
+    opacity: 0;
+}
+
+.site.visivel {
+    animation: aparecer 1.5s ease forwards;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header img{
+    animation: fade-in .8s;
+}
+
+header h2{
+
+    width: fit-content;
     margin: 0 auto;
-    border-radius: 10px;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.413);
+    position: absolute;
+    margin-bottom: 5rem;
+    color: #f1f7f8;
+    text-shadow:
+    2px 2px 0 #000000,
+    -1px -1px 0 #173A8A;
+    animation: fade-in .9s;
+
 }
 
 h1{
-
-    text-decoration: underline;
-
+    font-family: 'MinhaFonte',sans-serif;
+    letter-spacing: 4px;
+    color: #FFCA02;
+    -webkit-text-stroke: 1px #3369B2;
+    text-shadow:
+    6px 5px 0 #1f2d4e,
+    -1px -1px 0 #173A8A;
+    font-size: 5rem;
+    filter: saturate(1.4);
 }
+
+
 
 header{
 
 display: flex;
-flex-direction: column;
-padding: 1rem;
-
-background: rgba(255, 255, 255, 0.22);
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(7.9px);
--webkit-backdrop-filter: blur(7.9px);
-text-align: center;
-margin-bottom: 3rem;
-color: white;
-border-radius: 100px;
-width: 85%;
-height: fit-content;
+width: 100%;
+height: 100%;
 margin: auto;
-margin-bottom: 2rem;
-margin-top: 1rem;
-border: 1px rgba(255, 255, 255, 0.219) solid;
+align-items: center;
+flex-direction: column-reverse;
 }
 
-
-
-.pokerun{
-
-  border: 1px white solid;
-  width: 25rem;
-  height: 5rem;
-  position: absolute;
-  border-radius: 25px;
-  text-align: center;
-  margin-left: 1rem;
-  background-color: #ffffff27;
-  backdrop-filter: blur(15px);
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.562),
-  inset 2px 2px 3px rgba(255, 255, 255, 0.212),
-  inset -5px -5px 3px rgba(0, 0, 0, 0.205);
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  color: white;
-  text-shadow: 0 0 3px;
-  z-index: 5;
+header img{
+    margin: auto;
 }
 
-.PokeRunBtn{
-
-color: white;
-text-decoration: none;
-border: 1px solid rgba(255, 255, 255, 0.404);
-padding: 1rem;
-width:min(90%,150px);
-border-radius: 25px;
-text-align: center;
-margin: auto;
-background-color: #ffffff10;
-box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.277),
-inset 2px 2px 3px rgba(255, 255, 255, 0.35);
-backdrop-filter: blur(5px);
-transition: .4s;
-
+.box {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
 }
 
-
-.PokeRunBtn:active{
-
-transform: scale(.95);
-text-shadow: 0 0 4px white;
+/* Formulário fica na frente */
+form {
+    position: relative;
+    z-index: 2;
 }
 
+/* Preview escondido atrás do formulário */
+.previewPokemon {
+    position: absolute;
+    z-index: 1;
+
+    top: 50%;
+    left: calc(100% - 12px);
+
+    width: 180px;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+
+    background: #FFCA02;
+    border: 3px solid black;
+    box-shadow: 7px 7px 0 black;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translate(-75%, -50%);
+
+    transition:
+        transform .5s cubic-bezier(.22, 1, .36, 1),
+        opacity .35s ease,
+        visibility .35s;
+}
+
+.previewPokemon img {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+}
+
+.previewPokemon h3 {
+    font-family: "Space Grotesk", sans-serif;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.previewPokemon p {
+    font-size: .85rem;
+    font-weight: 600;
+}
+
+/* Pokémon aparece */
+.box.preview-ativo .previewPokemon {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -50%);
+}
 
 form{
 
 padding: 1rem;
 border: 1px solid black;
 width: min(90%,350px);
-
 margin: auto;
-height: 25rem;
+height: 26rem;
+background:linear-gradient(to bottom,#456ddb,#3763db ) ;
 
 overflow: hidden;
-box-shadow: 10px 15px 0 black;
 align-items: center;
 justify-content: center;
 margin-bottom: 5rem;
-background: rgba(255, 255, 255, 0.22);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(7.9px);
--webkit-backdrop-filter: blur(7.9px);
-border: 1px solid rgba(255, 255, 255, 0.32);
+border-radius: 0px;
+border: 4px solid rgb(0, 0, 0);
+box-shadow: 15px 15px 0 rgb(0, 0, 0);
+    animation: fade-in .8s ease-in-out;
 
 }
 
-.topForm{
 
-display: flex;
-position: relative;
-}
-
-.pokeball{
-
-width: 75px;
-position: absolute;
-right: 0;
-z-index: 1;
-}
 
 form h2{
 
 font-size: 2rem;
-border: 1px solid;
 padding: 1rem;
-border-radius: 10px;
 margin-bottom: 1rem;
-
-background: rgba(255, 255, 255, 0.22);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(7.9px);
--webkit-backdrop-filter: blur(7.9px);
-border: 1px solid rgba(255, 255, 255, 0.32);
+text-align: center;
+border: 4px solid;
+box-shadow: 7px 7px 0;
+background-color: #ffffff54;
 }
 
 form label{
 
 font-size: 1.5rem;
-border: 1px solid;
-border-radius: 5px;
 padding: .3rem;
-background: rgba(255, 255, 255, 0.22);
-border-radius: 10px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(7.9px);
--webkit-backdrop-filter: blur(7.9px);
-border: 1px solid rgba(255, 255, 255, 0.32);
 z-index: 2;
+text-transform: uppercase;
+font-weight: 600;
+}
 
+datalist{
+    text-align: center;
 }
 
 form input:not([type=checkbox]){
 
-margin-bottom: 1rem;
-border: 1px solid;
-border-radius: 5px;
+margin-bottom: .8rem;
 padding: .3rem;
 width: 300px;
 z-index: 3;
-background: rgba(255, 255, 255, 0.22);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(7.9px);
--webkit-backdrop-filter: blur(7.9px);
-border: 1px solid rgba(255, 255, 255, 0.32);
+border-radius: 0px;
+border: 3px solid rgb(0, 0, 0);
 margin-top: 1rem;
+box-shadow: 5px 5px 0 rgb(0, 0, 0);
+transition: .2s ease-in-out;
+text-align: center;
+
+}
+
+#nota{
+    width: fit-content;
+}
+
+form input:not([type=checkbox]):focus{
+
+box-shadow: 10px 5px 0 rgb(0, 0, 0);
+outline: none;
+transform: translateX(-3px);
+}
+
+.campo{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 .campoFav{
@@ -227,54 +383,55 @@ appearance: none;
     padding: 0;
 
     border: 2px solid black;
-    border-radius: 6px;
     cursor: pointer;
     background: white;
-transition: .4s;
-
-background: rgba(255, 255, 255, 0.22);
-border-radius: 16px;
-backdrop-filter: blur(7.9px);
--webkit-backdrop-filter: blur(7.9px);
-border: 1px solid rgba(255, 255, 255, 0.32);
-
+    transition: .4s;
+    border-radius: 1px;
+    border: 3px solid rgb(0, 0, 0);
+    box-shadow: 4px 4px 0;
 }
+
 input[type=checkbox]:checked{
 
-background: #ff0000ab;
+background: #c8ff00;
 backdrop-filter: blur(7.9px);
 -webkit-backdrop-filter: blur(7.9px);
-border: 1px solid rgba(255, 255, 255, 0.32);
-box-shadow: 0 0 10px rgb(255, 0, 0);
+border: 3px solid rgb(0, 0, 0);
+box-shadow: 9px 4px 0;
+transform:translateX(-3px);
 }
 
-button{
+#pokAddBtn{
 
 width: 100%;
 padding: .8rem;
-border-radius: 10px;
-  font-family: "Quicksand", sans-serif;font-size: 1.5rem;
+
 margin-top: 1rem;
 cursor: pointer;
-color: white;
+
+color: rgb(0, 0, 0);
+border-radius: 0px;
+box-shadow: 0px 6px 0px rgb(0, 0, 0);
+border: 3px solid rgba(0, 0, 0, 0.966);
+background: #FFCA02;
+
+
+font-family: "Space Grotesk", sans-serif;
+font-size: 1rem;
+text-transform: uppercase;
+font-weight: 600;
+
 transition: .3s ease-in-out;
-
-background: rgba(255, 255, 255, 0.22);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(7.9px);
--webkit-backdrop-filter: blur(7.9px);
-border: 1px solid rgba(255, 255, 255, 0.32);
-
-
 }
 
+#pokAddBtn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 #000;
+}
 
-button:active{
-
-transform: translateY(2px);
-box-shadow: inset 0 0 2px black;
-
+#pokAddBtn:active {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 #000;
 }
 
 ::placeholder{
@@ -296,12 +453,18 @@ input{
     margin: 2rem auto;
     padding: 1rem;
 
-    border: 1px solid rgba(255, 255, 255, 0.59);
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.52);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(11.6px);
-    -webkit-backdrop-filter: blur(11.6px);
+    border: 4px solid rgb(0, 0, 0);
+    border-radius: 2px;
+    background: rgb(252, 197, 79);
+    box-shadow: 14px 14px 1px rgba(0, 0, 0, 1);
+    animation: revelar linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 100%;
+}
+
+.fadeIn{
+        animation: fade-in .8s ease-in-out;
+
 }
 
 .topoLista{
@@ -312,23 +475,12 @@ input{
     border-radius: 10px;
     width: 300px;
     margin-bottom: 1rem;
-    background: rgba(61, 61, 61, 0.655);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(7.5px);
--webkit-backdrop-filter: blur(7.5px);
-border: 1px solid rgba(154, 154, 154, 0.58);
-color: white;
+    background: rgba(255, 255, 255, 0.459);
+    border-radius: 1px;
+    box-shadow: 6px 6px 1px rgb(0, 0, 0);
+    border: 3px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
 }
-
-input:focus-visible{
-
-  outline: 2px solid rgba(255, 53, 53, 0.302);
-  border-radius: 1px;
-
-}
-
-
 .listaPokemon {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -351,12 +503,39 @@ input:focus-visible{
     overflow: hidden;
 
     letter-spacing: normal;
-    background: rgba(255, 255, 255, 0.22);
-    border: 1px solid rgba(255, 255, 255, 0.32);
-    border-radius: 25px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(7.9px);
-    -webkit-backdrop-filter: blur(7.9px);
+    background: rgb(86, 130, 224);
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 2px;
+    box-shadow: 8px 8px 1px rgba(0, 0, 0, 1);
+    animation: open .3s ease-in-out forwards;
+    animation-direction: center;
+}
+.card {
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease,
+        margin 0.35s ease;
+}
+
+.card.excluindo {
+    transform: scale(0.8);
+    opacity: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    pointer-events: none;
+}
+
+.card-wrapper {
+    min-height: 0;
+    overflow: hidden;
+    transition:
+        height 0.35s ease,
+        opacity 0.35s ease;
+}
+
+.card-wrapper.excluindo {
+    height: 0 !important;
+    opacity: 0;
 }
 
 /* COLUNA ESQUERDA */
@@ -365,21 +544,38 @@ input:focus-visible{
     flex: 0 0 125px;
     flex-direction: column;
     align-items: center;
-    gap: .4rem;
+    gap: .8rem;
     min-width: 0;
     text-align: center;
 }
+
+.pokeName{
+    border: 2px solid;
+    width: fit-content;
+    padding: 4px;
+    background-color: #ffffff80;
+    box-shadow: 4px 4px 0;
+}
+
+.nota{
+    border: 2px solid;
+    width: fit-content;
+    background-color: #ffe07a;
+    box-shadow: 0px 4px 0;
+    font-weight: 600;
+    height: 20px;
+}
+
 
 .cardInfo img {
     width: 115px;
     height: 115px;
     box-sizing: border-box;
     object-fit: contain;
-    border-radius: 15px;
-    background: rgb(37, 39, 61);
-    border: 2px solid rgba(0, 0, 0, 0.26);
-    box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.637),
-    inset 2px 2px 5px rgba(227, 252, 255, 0.411);
+    border-radius: 1px;
+    background: rgba(255, 255, 255, 0.616);
+    border: 3px solid rgb(0, 0, 0);
+    box-shadow: 5px 5px 0px rgba(0, 0, 0, 1);
 }
 
 .cardInfo h2 {
@@ -388,7 +584,7 @@ input:focus-visible{
     border: 1px solid black;
     border-radius: 50px;
     padding: 7px;
-    background-color: rgb(32, 28, 44);
+    background-color: rgb(0, 0, 0);
     color: white;
     font-weight: 100;
 }
@@ -397,10 +593,34 @@ input:focus-visible{
     width: 100%;
     margin: 0;
     padding: 0;
-    font-family: "Quicksand", sans-serif;
     font-size: .85rem;
     overflow-wrap: anywhere;
     text-shadow: none;
+}
+
+.cardInfo p.favorito {
+    width: fit-content;
+    padding: 8px 10px;
+    border: 2px solid transparent;
+    transition:.2s ease
+
+}
+
+.cardInfo p.favorito.ativo {
+    color: #000;
+    background: #1fff71;
+    border-color: #000;
+    box-shadow: 0 3px 0 #000;
+    transform: translateY(-2px);
+}
+
+.cardInfo p.favorito.inativo {
+    color: #000000;
+    background: #00000020;
+    border-color: #00000030;
+    box-shadow: inset 0px 2px 4px #000000b2,
+    inset 0 -2px 4px #00000070;
+    transform: translateY(2px);
 }
 
 /* COLUNA DIREITA */
@@ -413,209 +633,439 @@ input:focus-visible{
     min-width: 0;
 }
 
-.cardConteudo .descricao {
-    width: auto;
-    margin: 0;
-    padding: .8rem;
-    flex: 1;
 
-    font-family: "Quicksand", sans-serif;
-    font-size: .95rem;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-
-    background: rgba(255, 255, 255, .3);
-    border: 1px solid rgba(255, 255, 255, .35);
-    border-radius: 16px;
-    text-shadow: none;
-}
 
 /* TRÊS BOTÕES */
 .buttons {
     display: flex;
-    gap: .4rem;
+    gap: 1rem;
     align-items: stretch;
 }
 
 .card .buttons button {
     flex: 1;
-    min-width: 0;
+    min-width: 1;
     width: auto;
     margin: 0;
     padding: .65rem .25rem;
-    font-family: "Quicksand", sans-serif;
     font-size: .85rem;
     color: black;
-    border-radius: 12px;
-    box-shadow: none;
+    border-radius: 1px;
+    border: 2px solid;
+    box-shadow: 0 5px 0;
+    transition: .2s ease;
+    width: fit-content;
+    font-family: "Space Grotesk", sans-serif;
+    cursor: pointer;
 }
 
 .card .jogar {
-    background: rgba(21, 255, 0, 0.35);
-    border: 1px solid rgba(0, 190, 10, .5);
+    background: rgb(123, 255, 0);
 }
 
 .card .editar {
-    background: rgba(255, 232, 25, .55);
-    border: 1px solid rgba(255, 157, 46, .6);
+    background: rgb(255, 238, 0);
 }
 
 .card .excluir {
-    background: rgba(255, 41, 41, .45);
-    border: 1px solid rgba(255, 46, 46, .6);
+    background: rgb(255, 45, 45);
 }
 
+.card .buttons button:hover {
+    box-shadow: 0 3px 0;
+    transform: translateY(2px);
+}
 .card .buttons button:active {
-    transform: scale(.96);
+    box-shadow: 0 0px 0;
+    transform: translateY(4px);
 }
 
 
-/* ===== RESPONSIVIDADE DO SITE ===== */
 
-@media (max-width: 900px) {
+/* =========================================
+   RESPONSIVIDADE — NOVADEX
+========================================= */
+
+/* DESKTOP MENOR / NOTEBOOK */
+@media (max-width: 1100px) {
+
+    .listaPokemon {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
     .painel {
         width: 94%;
-        max-width: 94%;
+        max-width: 100%;
+    }
+
+    .card {
+        gap: .7rem;
+        padding: .8rem;
+    }
+
+    .cardInfo {
+        flex-basis: 105px;
+    }
+
+    .cardInfo img {
+        width: 95px;
+        height: 95px;
+    }
+
+    .buttons {
+        gap: .5rem;
+    }
+
+    .card .buttons button {
+        font-size: .75rem;
+        padding: .6rem .2rem;
+    }
+}
+
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 800px) {
+
+    h1 {
+        font-size: 3.8rem;
+    }
+
+    header img {
+        max-width: 90%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    header h2 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .box {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    form {
+        width: min(85%, 350px);
+        box-sizing: border-box;
+    }
+
+    form input:not([type=checkbox]) {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .previewPokemon {
+        width: 150px;
+        left: calc(100% - 8px);
+    }
+
+    .previewPokemon img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .painel {
+        width: 94%;
+        padding: .8rem;
     }
 
     .listaPokemon {
         grid-template-columns: 1fr;
     }
 
-    .pokerun {
-        position: relative;
-        width: 90%;
-        max-width: 400px;
-        margin: 1rem auto;
+    .card {
+        min-height: 190px;
+    }
+
+    .cardInfo {
+        flex-basis: 125px;
+    }
+
+    .cardInfo img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .card .buttons button {
+        font-size: .9rem;
     }
 }
 
-@media (max-width: 600px) {
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 550px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
     header {
-        width: 80%;
-        padding: .8rem;
-        border-radius: 24px;
-    }
-
-    header h1,
-    header p {
-        width: 100%;
-        font-size: clamp(.9rem, 4vw, 1.5rem);
-    }
-
-    
-
-    form {
-        width: 80%;
         height: auto;
-        min-height: 25rem;
-        padding: .8rem;
-    }
-
-    form h2 {
-        font-size: 1.4rem;
-        padding: .7rem;
-    }
-
-    form label {
-        font-size: 1rem;
-    }
-
-    form input:not([type="checkbox"]) {
-        width: 100%;
-        min-width: 0;
+        min-height: 220px;
+        padding: 2rem 0 1rem;
         box-sizing: border-box;
     }
 
-    .pokeball {
-        width: 50px;
+    header img {
+        width: 95%;
+        max-width: 420px;
+        height: auto;
     }
 
+    header h2 {
+        position: static;
+        margin: 1rem auto 0;
+        font-size: 1rem;
+        padding: 0 .5rem;
+    }
+
+    /* FORMULÁRIO */
+
+    .box {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    form {
+        width: 90%;
+        max-width: 350px;
+        height: auto;
+        min-height: 26rem;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        box-sizing: border-box;
+    }
+
+    form h2 {
+        font-size: 1.5rem;
+        padding: .8rem;
+    }
+
+    form label {
+        font-size: 1.1rem;
+    }
+
+    form input:not([type=checkbox]) {
+        width: 100%;
+        min-width: 0;
+        font-size: .9rem;
+        box-sizing: border-box;
+    }
+
+    .campo {
+        width: 100%;
+        gap: .3rem;
+    }
+
+    .campoFav {
+        gap: .6rem;
+    }
+
+    input[type=checkbox] {
+        flex-shrink: 0;
+    }
+
+    #pokAddBtn {
+        font-size: .9rem;
+    }
+
+    /* PREVIEW DO POKÉMON */
+
+    .previewPokemon {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 90%;
+        max-width: 250px;
+
+        transform: translateY(-10px);
+        margin: 0 auto;
+
+        display: none;
+    }
+
+    .box.preview-ativo .previewPokemon {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .previewPokemon img {
+        width: 110px;
+        height: 110px;
+    }
+
+    /* PAINEL */
+
     .painel {
-        width: 85%;
-        max-width: 96%;
-        padding: .5rem;
+        width: 94%;
+        max-width: 100%;
+        padding: .7rem;
+        margin: 1.5rem auto;
+        box-sizing: border-box;
+        box-shadow: 8px 8px 0 black;
     }
 
     .topoLista {
         width: 100%;
         box-sizing: border-box;
+        padding: .8rem;
     }
 
+    .topoLista h2 {
+        font-size: 1.2rem;
+    }
+
+    .listaPokemon {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* CARDS */
+
     .card {
-        gap: .4rem;
-        padding: .6rem;
+        width: 100%;
         min-height: 180px;
+        height: auto;
+        gap: .7rem;
+        padding: .7rem;
+        box-shadow: 5px 5px 0 black;
     }
 
     .cardInfo {
-        flex-basis: 85px;
+        flex: 0 0 100px;
+        gap: .6rem;
     }
 
     .cardInfo img {
-        width: 78px;
-        height: 78px;
+        width: 90px;
+        height: 90px;
     }
 
     .cardInfo h2 {
-        font-size: .73rem;
+        font-size: .85rem;
+        padding: 5px;
     }
 
     .cardInfo p {
-        font-size: .62rem;
+        font-size: .75rem;
     }
 
-    .cardConteudo .descricao {
-        padding: .5rem;
+    .pokeName {
         font-size: .8rem;
-        line-height: 1.4;
     }
 
-    .card .buttons {
-        gap: .3rem;
+    .nota {
+        font-size: .8rem;
+    }
+
+    .cardConteudo {
+        gap: .6rem;
+    }
+
+    .buttons {
+        gap: .4rem;
+        flex-wrap: wrap;
     }
 
     .card .buttons button {
-        flex: 1;
+        flex: 1 1 30%;
         min-width: 0;
-        padding: .55rem .15rem;
-        font-size: .7rem;
-    }
-
-    .PokeRunBtn {
-        max-width: 100%;
-        padding: .7rem;
+        padding: .6rem .15rem;
+        font-size: .75rem;
     }
 }
 
+
+/* =========================================
+   CELULARES PEQUENOS
+========================================= */
+
 @media (max-width: 380px) {
+
+    h1 {
+        font-size: 2.8rem;
+    }
+
+    header h2 {
+        font-size: .9rem;
+    }
+
+    form {
+        width: 92%;
+        padding: .8rem;
+    }
+
+    form h2 {
+        font-size: 1.25rem;
+    }
+
+    form label {
+        font-size: .95rem;
+    }
+
     .card {
-        gap: .4rem;
-        padding: .45rem;
+        gap: .5rem;
+        padding: .5rem;
     }
 
     .cardInfo {
-        flex-basis: 70px;
+        flex-basis: 80px;
     }
 
     .cardInfo img {
-        width: 65px;
-        height: 65px;
-    }
-
-    .cardConteudo .descricao {
-        font-size: .72rem;
-    }
-
-    .card .buttons {
-        flex-direction: column;
+        width: 75px;
+        height: 75px;
     }
 
     .card .buttons button {
-        width: 100%;
-        padding: .45rem;
-        font-size: .78rem;
+        font-size: .65rem;
+        padding: .5rem .1rem;
+    }
+
+    .painel {
+        padding: .5rem;
+    }
+
+    .topoLista h2 {
+        font-size: 1rem;
     }
 }
 
 
+/* =========================================
+   ACESSIBILIDADE
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+
+}
+/* Celulares */
+@media (max-width: 550px) {
+    .intro video {
+        object-fit: contain;
+        background: black;
+    }
+}

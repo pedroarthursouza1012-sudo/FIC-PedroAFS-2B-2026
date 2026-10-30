@@ -11,31 +11,45 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 
 
     <title>NovaDex</title>
 </head>
 <body>
-    
+
+<div class="intro" id="intro">
+    <button id="iniciarIntro" class="start">INICIAR EXPERIÊNCIA</button>
+
+    <video id="introVideo" playsinline preload="auto">
+        <source src="assets/PokeIntro.mp4" type="video/mp4">
+    </video>
+</div>
+
+<main class="site">  
 <header>
-    <h1>NovaDex</h1>
-    <p>Pesquise, avalie e colecione Pokémons</p>
-    
+    <img src="img/NovaDex-28-10-2026.png" alt="title">
+    <h2>Cadastre seus Pokemons</h2>
 </header>
-<main>
 
 
 
-<div class="box">
 
+    <div class="box">
+        <div class="previewPokemon">
+        <img src="" alt="Prévia do Pokémon">
+        <h3></h3>
+        <p></p>
+    </div>
 
     <form>   
-        <div class="topForm">
-        <h2>Novo pokemon</h2>
-        <img src="img/960px-Poké_Ball_icon.svg.webp" class="pokeball">
-        </div>
+        
+        <h2>NOVO POKEMON</h2>
+        
         <div class="campo">
-            <label for="name">Nome</label>
+            <label for="name">Nome:</label>
             <input type="text" id="name" 
             placeholder="Digite o nome do pokemon"
             list="pokemonList"
@@ -44,13 +58,13 @@
         </div>
 
         <div class="campo">
-                <label for="nota">Nota</label>
+                <label for="nota">Nota:</label>
                 <input type="number" id="nota" placeholder="0-10"
                 min="0" max="10" required>
         </div>
 
         <div class="campoFav">
-            <label for="favorito">Favorito</label>
+            <label for="favorito">Favorito:</label>
             <input type="checkbox" id="favorito">
         </div>
 
@@ -58,8 +72,9 @@
 
 
     </form>
-</div>
 
+</div>
+<div class="fadeIn">
 <section class="painel">
     <div class="topoLista"><h2>Pokemons adicionados</h2>
     <div class="contador"><p>Total: 0</p></div></div>
@@ -69,7 +84,7 @@
     </div>
 
 </section>
-
+</div>
 
 
 </main>
