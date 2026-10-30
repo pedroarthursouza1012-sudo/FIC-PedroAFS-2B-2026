@@ -1,47 +1,44 @@
-*{
-
-padding: 0;
-margin: 0;
-box-sizing: border-box;
-
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-html, body{
+html, body {
     overflow-x: hidden;
 }
 
-body{
-
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background: url(img/646653.jpg);
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-min-height: 100vh;
-
+body {
+    font-family: "Space Grotesk", sans-serif;
+    background: url(../Infinity%20run/main/img/1144063.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
 }
 
-h1{
-
-
-text-align: center;
-padding: 1rem;
-border: 1px solid black;
-width: min(90%,300px);
-margin: auto;
-margin-top: 1rem;
-border-radius: 25px;
-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.214),
-inset -2px -2px 3px rgba(0, 0, 0, 0.318),
-inset 2px 2px 3px white;
-background-color: #fafafa61;
-backdrop-filter: blur(5px);
-color: white;
-font-weight: 300;
-font-family: "Lexend", sans-serif;
+.tutorial {
+    color: white;
+    margin: 1rem;
+    list-style: none;
+    background-color: #1d5d76;
+    padding: 1rem;
+    width: fit-content;
+    border: 3px #1d83ac solid;
+    box-shadow: 7px 7px 0 #153f50;
+    margin-bottom: 2rem;
 }
+
 
 .tela {
+    --escala: 1;
+    --tamanho-personagem-u: 150;
+    --tamanho-arvore-u: 50;
+    --chao: 15%;
+    --luz: 1;
+    --vazio-inferior-personagem: 0;
+    --vazio-inferior-arvore: 0;
+
     border: 1px solid black;
     width: 100%;
     height: 45rem;
@@ -49,45 +46,43 @@ font-family: "Lexend", sans-serif;
     overflow: hidden;
     position: relative;
 
- background: linear-gradient(
+    background: linear-gradient(
         to top,
         #e85d24 0%,
-        #f58b45 28%,
+        #f08238 28%,
         #f6b35f 48%,
-        #5f91c7 78%,
-        #315b91 100%
+        #478dd8 78%,
+        #216ac9 100%
     );
     background-repeat: no-repeat;
     display: flex;
-    transition: 5s;
+
+    /* clique/toque rápido, sem zoom por toque duplo nem seleção de texto */
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .noite-overlay {
     position: absolute;
     inset: 0;
-
     background: #10152f;
-
-    opacity: 0;
-
+    opacity: calc((1 - var(--luz)) * 0.7);
     pointer-events: none;
-
-    transition: opacity 3s ease;
-
     z-index: 1;
 }
 
-.sol{
+.sol {
     width: 355px;
     height: 355px;
-    
-    background:linear-gradient(to top,rgb(255, 102, 0),rgb(255, 230, 0)) ;
-    
-box-shadow:
-    0 0 30px rgba(255, 196, 0, .8),
-    0 0 80px rgba(255, 150, 0, .45),
-    inset 1px 2px 3px rgba(255,255,255,.47),
-    inset -3px -2px 3px rgba(0,0,0,.27);
+
+    background: linear-gradient(to top, rgb(255, 102, 0), rgb(255, 230, 0));
+
+    box-shadow:
+        0 0 30px rgba(255, 196, 0, .8),
+        0 0 80px rgba(255, 150, 0, .45),
+        inset 1px 2px 3px rgba(255, 255, 255, .47),
+        inset -3px -2px 3px rgba(0, 0, 0, .27);
 
     display: flex;
     margin: auto;
@@ -95,13 +90,11 @@ box-shadow:
     border-radius: 50%;
     position: absolute;
     left: 50%;
-    bottom: 25%;
-        transition:5s;
-        z-index: 0;
-}
-
-.tela.noite .sol {
-    opacity: 0;
+    /* dia: 25%  ->  noite: -20% */
+    bottom: calc(25% - 45% * (1 - var(--luz)));
+    opacity: min(1, calc(var(--luz) * 2.5));
+    transition: bottom .15s linear, opacity .15s linear;
+    z-index: 0;
 }
 
 .lua {
@@ -111,7 +104,8 @@ box-shadow:
     height: 110px;
 
     right: 15%;
-    bottom: -20%;
+    /* dia: -20%  ->  noite: 62% */
+    bottom: calc(-20% + 82% * (1 - var(--luz)));
 
     border-radius: 50%;
 
@@ -121,90 +115,49 @@ box-shadow:
         0 0 25px rgba(255, 244, 194, .8),
         0 0 70px rgba(255, 244, 194, .35);
 
-    opacity: 0;
-
-    transition:
-        bottom 3s ease,
-        opacity 3s ease;
+    opacity: min(1, calc((1 - var(--luz)) * 2));
+    transition: bottom .15s linear, opacity .15s linear;
 
     z-index: 2;
     filter: brightness(2);
-
-}
-
-.tela.noite .lua {
-    bottom: 62%;
-    opacity: 1;
 }
 
 .estrelas {
     position: absolute;
-
     inset: 0;
-
     pointer-events: none;
-
-    opacity: 0;
-
-    transition: opacity 4s ease;
-
+    opacity: calc(1 - var(--luz));
+    transition: opacity .15s linear;
     z-index: 2;
-}
-
-.tela.noite .estrelas {
-    opacity: 1;
 }
 
 .estrela {
     position: absolute;
-
     width: 3px;
     height: 3px;
-
     background: white;
-
     border-radius: 50%;
-
     box-shadow: 0 0 6px white;
-
     animation: piscar 2s infinite alternate;
 }
 
 @keyframes piscar {
-    from {
-        opacity: .3;
-    }
-
-    to {
-        opacity: 1;
-    }
+    from { opacity: .3; }
+    to   { opacity: 1; }
 }
 
+/* Escurecimento do cenário acompanha --luz (noite = .45 / .55 / .6, como antes) */
 .montanhas {
-    transition: filter 3s ease;
+    filter: brightness(calc(.45 + .55 * var(--luz)));
 }
 
 .grass {
-    transition: filter 3s ease;
+    filter: brightness(calc(.55 + .45 * var(--luz)));
 }
 
 .floor {
-    transition: filter 3s ease;
+    filter: brightness(calc(.6 + .4 * var(--luz)));
 }
-
-.tela.noite .montanhas {
-    filter: brightness(.45);
-}
-
-.tela.noite .grass {
-    filter: brightness(.55);
-}
-
-.tela.noite .floor {
-    filter: brightness(.6);
-}
-
-
 
 .nuvem,
 .nuvem2,
@@ -259,7 +212,6 @@ box-shadow:
     bottom: 10px;
 }
 
-
 /* NUVEM 2 */
 .nuvem2 {
     top: 16.7%;
@@ -282,7 +234,6 @@ box-shadow:
     bottom: 8px;
 }
 
-
 /* NUVEM 3 */
 .nuvem3 {
     top: 11.1%;
@@ -303,7 +254,6 @@ box-shadow:
     right: 15px;
     bottom: 10px;
 }
-
 
 /* NUVEM 4 */
 .nuvem4 {
@@ -326,7 +276,6 @@ box-shadow:
     bottom: 10px;
 }
 
-
 /* NUVEM 5 */
 .nuvem5 {
     top: 5.6%;
@@ -347,7 +296,6 @@ box-shadow:
     right: 12px;
     bottom: 10px;
 }
-
 
 /* NUVEM 6 */
 .nuvem6 {
@@ -370,21 +318,21 @@ box-shadow:
     bottom: 10px;
 }
 
-
-
+/* O topo do .floor é a linha do chão: personagem e árvores se apoiam nela. */
 .floor {
-        background: linear-gradient(
+    background: linear-gradient(
         to bottom,
         #59391f,
         #302014
     );
 
-    height: 15%;
+    height: var(--chao);
     width: 100%;
     position: absolute;
     bottom: 0;
 
     box-shadow: inset 0 8px 15px rgba(0, 0, 0, 0.18);
+    z-index: 3;
 }
 
 .grass {
@@ -392,7 +340,7 @@ box-shadow:
     width: 100%;
     position: absolute;
 
- background:
+    background:
         repeating-linear-gradient(
             90deg,
             rgba(20, 65, 25, .65) 0px,
@@ -411,7 +359,10 @@ box-shadow:
     box-shadow:
         inset 0 -8px 15px rgba(0, 0, 0, 0.12),
         0 -4px 10px rgba(0, 0, 0, 0.12);
+
+    z-index: 2;
 }
+
 .grass::before {
     content: "";
     position: absolute;
@@ -434,13 +385,13 @@ box-shadow:
 
 .montanhas {
     position: absolute;
-    bottom: 15%; /* fica exatamente atrás do chão */
+    bottom: var(--chao); /* fica exatamente atrás do chão */
     left: 0;
 
     width: 100%;
     height: 35%;
 
-background: linear-gradient(
+    background: linear-gradient(
         to top,
         #3f4a4c,
         #7b7770
@@ -484,66 +435,229 @@ background: linear-gradient(
         100% 45%,
         100% 100%
     );
-    
 }
 
-.grass {    
-    z-index: 2;
-}
-
-.floor {
-    z-index: 3;
-}
-
-.personagem{
-
-    display: flex;
-    width: fit-content;
-    height: fit-content;
+/* ==========================================
+   PERSONAGEM
+   1) .personagem        -> posição horizontal fixa e linha do chão
+   2) .personagem-pulo   -> deslocamento vertical do pulo (JS)
+   3) img                -> desce a fração transparente da base do sprite
+                            (translateY em % da própria altura), de modo
+                            que o último pixel opaco toque a linha do chão
+   ========================================== */
+.personagem {
     position: absolute;
-    bottom: 9%;
     left: 7.1%;
-    width: 80px;
+    bottom: var(--chao);
+    width: calc(var(--tamanho-personagem-u) * var(--escala) * 1px);
+    height: calc(var(--tamanho-personagem-u) * var(--escala) * 1px);
     z-index: 4;
+    pointer-events: none;
+}
+
+.personagem-pulo {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
 }
 
 .personagem img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
     display: block;
-    width: 150px;
-    height: 150px;
-    transform: scaleX(-1);
+    width: 100%;
+    height: 100%;
+    transform: translateY(calc(var(--vazio-inferior-personagem) * 100%)) scaleX(-1);
     transform-origin: bottom center;
     filter: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.2));
-
+    visibility: hidden;
 }
 
+.personagem img.carregado {
+    visibility: visible;
+}
 
-#back{
+/* ==========================================
+   ÁRVORES
+   .tree            -> modelo (árvore-base), não exibido
+   .grupo-arvores   -> 1 a 3 árvores; o JS só altera o translate horizontal
+   ========================================== */
+.tree {
+    display: none;
+}
 
+.grupo-arvores {
     position: absolute;
+    left: 0;
+    bottom: var(--chao);
+    height: calc(var(--tamanho-arvore-u) * var(--escala) * 1px);
+    width: calc(var(--largura) * var(--escala) * 1px);
+    z-index: 3;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.arvore {
+    position: absolute;
+    bottom: 0;
+    left: calc(var(--x) * var(--escala) * 1px);
+    height: calc(var(--altura) * var(--escala) * 1px);
+    width: auto;
+    display: block;
+    transform: translateY(calc(var(--vazio-inferior-arvore) * 100%)) scaleX(-1);
+    transform-origin: bottom center;
+    filter: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.2));
+}
+
+#back {
+    position: inherit;
+    margin: auto;
+    display: flex;
+    margin-top: 1rem;
     top: 1rem;
     left: 1rem;
     z-index: 20;
     padding: .5rem 1rem;
-    border-radius: 15px;
-    border:none;
-    font-family: "Quicksand", sans-serif;
+    border-radius: 1px;
+    border: none;
     font-size: 1.3rem;
     font-weight: 700;
-    background:rgba(255, 255, 255, 0.355);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.241),
-    inset 2px 2px 2px rgba(255, 255, 255, 0.356),
-    inset -2px -2px 2px rgba(0, 0, 0, 0.361);
+    background: rgb(255, 56, 56);
+    border: 3px rgb(143, 16, 16) solid;
+    box-shadow: 0 7px 0 rgb(185, 0, 0);
     cursor: pointer;
-    color: white;
+    color: rgb(0, 0, 0);
+    letter-spacing: 1px;
     transition: .3s;
+    font-family: "Space Grotesk", sans-serif;
 }
 
-#back:active{
+#back:hover {
+    transform: translateY(2px);
+    box-shadow: 0 4px 0px rgb(185, 0, 0);
+}
 
-    transform: scale(.95);
-    text-shadow: 0 0 5px;
+#back:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0px rgb(185, 0, 0),
+        inset 0 2px 2px rgba(0, 0, 0, 0.329),
+        inset 0 -2px 2px rgba(0, 0, 0, 0.329);
+}
+
+#contadorBox {
+    font-size: 1rem;
+    z-index: 10;
+    color: white;
+    background-color: rgb(98, 148, 255);
+    backdrop-filter: blur(15px);
+    width: fit-content;
+    height: fit-content;
+    border-radius: 0;
+    padding: 1rem;
+    box-shadow: 6px 6px 0px rgb(0, 0, 0);
+    border: 2px rgb(0, 0, 0) solid;
+    text-shadow: 0 0 5px white;
+}
+
+/* Dica exibida enquanto o jogo espera a primeira interação */
+#dicaInicio {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    padding: 8px 14px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    background-color: #acd7ff;
+    box-shadow: 5px 5px 0 black;
+    border: 3px solid black;
+    pointer-events: none;
+}
+
+#dicaInicio.oculta {
+    display: none;
+}
+
+#gameOver {
+    position: absolute;
+    inset: 0;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #0000009c;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden; /* fora do foco e do teclado enquanto estiver oculto */
+    transition: opacity .4s, visibility .4s;
+    pointer-events: none;
+}
+
+#gameOver.on {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+#gameOver h2 {
+    font-size: 3rem;
+    color: rgb(255, 0, 0);
+    text-align: center;
+    text-shadow: 0 3px 3px rgba(0, 0, 0, 0.397);
+    letter-spacing: 1px;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+#gameOver p {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    background-color: #acd7ff;
+    padding: 5px;
+    border-radius: 0px;
+    box-shadow: 5px 5px 0 black;
+    border: 3px solid black;
+}
+
+#jogarNovamente {
+    padding: 12px 24px;
+    border: 3px black solid;
+    border-radius: 0px;
+    cursor: pointer;
+    box-shadow: 0 9px 0px black;
+    background-color: rgb(66, 167, 250);
+    font-size: 1.3rem;
+    transition: .2s;
+    font-family: "Space Grotesk", sans-serif;
+}
+
+#jogarNovamente:hover {
+    transform: translateY(2px);
+    box-shadow: 0 5px 0px black;
+}
+
+#jogarNovamente:active {
+    transform: translateY(4px);
+    box-shadow: 0 0px 0px black;
+}
+
+/* ==========================================
+   RESPONSIVIDADE
+   Só muda a altura da .tela e o fator --escala.
+   Tamanhos, chão e posições derivam dessas variáveis,
+   então o alinhamento se mantém em qualquer largura.
+   ========================================== */
+
+@media (max-width: 768px) {
+    .tela {
+        --escala: .85;
+        height: clamp(24rem, 55vh, 45rem);
+    }
 }
 
 @media (max-width: 480px) {
@@ -563,160 +677,19 @@ background: linear-gradient(
     h1 {
         order: 1;
         margin: 1rem auto 0;
-    }
-
-    .tela {
-        order: 3;
-    }
-}
-
-.tree{
-
-    display: flex;
-    width: fit-content;
-    height: fit-content;
-    position: absolute;
-    bottom: 15%;
-    left: 42.9%;
-    z-index: 3;
-    
-}
-
-.tree img{
-
-    display: block;
-    width: 50px;
-    height: 50px;
-    transform: scaleX(-1);
-    transform-origin: bottom center;
-    filter: drop-shadow(5px 5px 4px rgba(0, 0, 0, 0.2));
-    transition: .6s ease;
-}
-
-#contadorBox{
-
-    font-size: 1rem;
-    z-index: 10;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.418);
-    backdrop-filter: blur(15px);
-    width: fit-content;
-    height: fit-content;
-    border-radius: 0 0 25px 0;
-    padding: 1rem;
-    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.363);
-    border: 1px rgba(255, 255, 255, 0.301) solid;
-    text-shadow: 0 0 5px white;
-}
-
-#gameOver{
-
-    position: absolute;
-    inset: 0;
-
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    background-color: #0000009c;
-    backdrop-filter: blur(10px);
-    z-index: 10;
-    display: flex;
-    gap: 10px;
-    opacity: 0;
-    transition: .4s;
-    pointer-events: none;
-}
-
-#gameOver.on{
-
-    opacity: 1;
-    pointer-events:auto;
-}
-#gameOver h2 {
-    font-size: 3rem;
-    color: rgb(255, 0, 0);
-    text-align: center;
-    text-shadow: 0 3px 3px rgba(0, 0, 0, 0.397);
-    letter-spacing: 1px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-#gameOver p {
-    color: white;
-    text-align: center;
-    background-color: #00000050;
-    padding: 5px;
-    border-radius: 50px;
-}
-
-#jogarNovamente {
-    padding: 12px 24px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: 0 5px 0px black,
-    inset 2px 2px 3px rgba(255, 255, 255, 0.611),
-    inset -2px -2px 3px rgba(0, 0, 0, 0.371);
-    background-color: rgb(0, 255, 64);
-    font-size: 1.3rem;
-    transition: .2s;
-}
-
-#jogarNovamente:active{
-
-    transform: translateY(3px);
-    box-shadow: 0 0px 0px black,
-    inset 2px 2px 3px rgba(255, 255, 255, 0.611),
-    inset -2px -2px 3px rgba(0, 0, 0, 0.371);
-}
-
-/* ==========================================
-   RESPONSIVIDADE
-   Ajusta apenas altura da .tela e escala em
-   telas muito pequenas. Posições horizontais
-   já estão em % (não precisam de media query).
-   ========================================== */
-
-@media (max-width: 768px) {
-    .tela {
-        height: clamp(24rem, 55vh, 45rem);
-    }
-
-    .personagem img {
-        transform: scaleX(-1) scale(0.85);
-    }
-
-    .tree img {
-        transform: scaleX(-1) scale(0.85);
-    }
-}
-
-@media (max-width: 480px) {
-    .tela {
-        height: clamp(20rem, 50vh, 32rem);
-    }
-
-    .personagem img {
-        transform: scaleX(-1) scale(0.65);
-    }
-
-    .tree img {
-        transform: scaleX(-1) scale(0.65);
-    }
-
-    h1 {
         font-size: 1.1rem;
         padding: 0.75rem;
+    }
+
+    .tela {
+        --escala: .65;
+        order: 3;
+        height: clamp(20rem, 50vh, 32rem);
     }
 }
 
 @media (max-width: 380px) {
-    .personagem img {
-        transform: scaleX(-1) scale(0.5);
-    }
-
-    .tree img {
-        transform: scaleX(-1) scale(0.5);
+    .tela {
+        --escala: .5;
     }
 }

@@ -324,7 +324,7 @@
         const btnJogar = card.querySelector(".jogar");
 
         btnJogar.addEventListener("click", () => {
-            const caminho = `../Infinity%20run/index.html?pokemon=${pokemon.id}`;
+            const caminho = `../Infinity%20run/main/main.html`;
 
             window.location.href = caminho;
         });

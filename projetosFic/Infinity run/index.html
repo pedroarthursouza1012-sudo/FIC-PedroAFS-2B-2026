@@ -5,26 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
- 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 
-<title>Jogo</title>
+    <title>PokeRun</title>
 </head>
 <body id="body">
     <button id="back">◀ Voltar</button>
-    <h1>PokeRun</h1>
-    
+
     <div class="tela">
-    <div class="noite-overlay"></div>
+        <div class="noite-overlay"></div>
 
         <div id="gameOver">
-            <h2>Game over</h2>
+            <h2>GAME OVER</h2>
             <p>Pontuação: <span id="pontuacaoFinal">0000000</span></p>
 
             <button id="jogarNovamente">Jogar novamente</button>
         </div>
+
+        <!-- Aparece enquanto o jogo aguarda a primeira interação -->
+        <div id="dicaInicio" class="oculta">Clique, ESPAÇO ou ↑ para começar</div>
 
         <div class="estrelas"></div>
 
@@ -36,27 +38,35 @@
         <div class="nuvem5"></div>
         <div class="nuvem6"></div>
 
-            <div class="sol"></div>
-            <div class="lua"></div>
-            <div class="montanhas"></div>
-            <div class="personagem">
-                <img src="" id="player">
-            </div>
+        <div class="sol"></div>
+        <div class="lua"></div>
+        <div class="montanhas"></div>
 
-            <div class="tree">
-                <img src="../Infinity run/img/pokemon-fire-red-tree.png" alt="">
-            </div>
 
-            <div class="floor">
-
-                <div class="grass">
-                    <div class="details"></div>
-                </div>
-                
+        <div class="personagem" id="personagem">
+            <div class="personagem-pulo" id="personagemPulo">
+                <img id="player" alt="Pokémon escolhido">
             </div>
+        </div>
+
+        <div class="tree" aria-hidden="true">
+            <img src="../Infinity run/img/pokemon-fire-red-tree.png" alt="">
+        </div>
+
+        <div class="floor">
+            <div class="grass">
+                <div class="details"></div>
+            </div>
+        </div>
     </div>
 
-
+    <div class="tutorial">
+        <h2>COMO JOGAR:</h2>
+        <li>SETA PARA CIMA / ESPAÇO: Pule os obstáculos.</li>
+        <li>MOUSE: Clique na tela para pular.</li>
+        <li>OBJETIVO: Desvie dos obstáculos e percorra a maior distância possível.</li>
+        <li>RECORDE: Supere sua melhor pontuação e tente chegar cada vez mais longe!</li>
+    </div>
 
     <script src="script.js"></script>
 </body>
