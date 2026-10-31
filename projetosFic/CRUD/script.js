@@ -321,12 +321,20 @@
     }
 
     function adicionarEventoJogar(card, pokemon) {
+
         const btnJogar = card.querySelector(".jogar");
 
         btnJogar.addEventListener("click", () => {
+
+            localStorage.setItem(
+                "pokemonSelecionado",
+                JSON.stringify(pokemon)
+            );
+
             const caminho = `../Infinity%20run/main/main.html`;
 
             window.location.href = caminho;
+
         });
     }
 

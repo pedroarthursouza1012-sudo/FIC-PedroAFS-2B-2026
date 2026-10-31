@@ -1,34 +1,50 @@
+
 const abrirPokemons = document.getElementById("abrirPokemons");
 const selecao = document.getElementById("selecao");
 const listaPokemons = document.getElementById("listaPokemons");
 const jogar = document.getElementById("jogar");
 const main = document.getElementById("main");
-let pokemonSelecionado = JSON.parse(
-    localStorage.getItem("pokemonSelecionado")
-) || null;
 
+let pokemons = [];
+let pokemonSelecionado = null;
 
-// Recupera os Pokémon cadastrados no CRUD
-const pokemons = JSON.parse(localStorage.getItem("pokemons")) || [];
+function atualizarDados() {
+    pokemons = JSON.parse(localStorage.getItem("pokemons")) || [];
+
+    const salvo = JSON.parse(
+        localStorage.getItem("pokemonSelecionado")
+    );
+
+    pokemonSelecionado = pokemons.find(
+        pokemon => String(pokemon.id) === String(salvo?.id)
+    ) || null;
+
+    if (!pokemonSelecionado) {
+        localStorage.removeItem("pokemonSelecionado");
+    }
+}
+
+// Atualiza os dados ao entrar ou voltar para a página
+window.addEventListener("pageshow", () => {
+    atualizarDados();
+});
 
 // Abre a seleção
 abrirPokemons.addEventListener("click", () => {
+    atualizarDados();
     selecao.classList.add("ativa");
     carregarPokemons();
 });
 
+// Fecha somente quando clicar no fundo
 selecao.addEventListener("click", (event) => {
-
-    // Fecha somente quando clicar no fundo
     if (event.target === selecao) {
         selecao.classList.remove("ativa");
     }
-
 });
 
 // Cria os cards
 function carregarPokemons() {
-
     listaPokemons.innerHTML = "";
 
     if (pokemons.length === 0) {
@@ -37,7 +53,6 @@ function carregarPokemons() {
     }
 
     pokemons.forEach(pokemon => {
-
         const card = document.createElement("div");
         card.classList.add("pokemonCard");
 
@@ -51,34 +66,35 @@ function carregarPokemons() {
         const selecionar = document.createElement("button");
         selecionar.textContent = "SELECIONAR";
 
-    selecionar.addEventListener("click", () => {
+        selecionar.addEventListener("click", () => {
+            pokemonSelecionado = pokemon;
 
-        pokemonSelecionado = pokemon;
+            localStorage.setItem(
+                "pokemonSelecionado",
+                JSON.stringify(pokemon)
+            );
 
-        localStorage.setItem(
-            "pokemonSelecionado",
-            JSON.stringify(pokemon)
-        );
+            document.querySelectorAll(".pokemonCard")
+                .forEach(card => card.classList.remove("selecionado"));
 
-        document.querySelectorAll(".pokemonCard")
-            .forEach(card => card.classList.remove("selecionado"));
+            card.classList.add("selecionado");
+        });
 
-        card.classList.add("selecionado");
-
-    });
-    
         card.append(imagem, nome, selecionar);
         listaPokemons.appendChild(card);
-        if (pokemonSelecionado && pokemonSelecionado.id == pokemon.id) {
-        card.classList.add("selecionado");
-}
 
+        if (
+            pokemonSelecionado &&
+            String(pokemonSelecionado.id) === String(pokemon.id)
+        ) {
+            card.classList.add("selecionado");
+        }
     });
-
 }
 
-// Inicia o jogo com o Pokémon escolhido
+// Inicia o jogo
 jogar.addEventListener("click", () => {
+    atualizarDados();
 
     if (!pokemonSelecionado) {
         alert("Selecione um Pokémon primeiro!");
@@ -88,5 +104,4 @@ jogar.addEventListener("click", () => {
     const id = pokemonSelecionado.id;
 
     window.location.href = `../index.html?pokemon=${id}`;
-
 });

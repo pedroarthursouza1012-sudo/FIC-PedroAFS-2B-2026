@@ -1,6 +1,4 @@
 "use strict";
-
-
 const back = document.getElementById("back");
 const tela = document.querySelector(".tela");
 const personagem = document.getElementById("personagem");
@@ -87,6 +85,39 @@ let hitboxPersonagem = { esq: 0, dir: 0, altura: 0 };
 /* ============================================================
    UTILIDADES
    ============================================================ */
+function validarPokemon() {
+    const pokemons = JSON.parse(
+        localStorage.getItem("pokemons")
+    ) || [];
+
+    const selecionado = JSON.parse(
+        localStorage.getItem("pokemonSelecionado")
+    );
+
+    const parametros = new URLSearchParams(window.location.search);
+    const idURL = parametros.get("pokemon");
+
+    const pokemonExiste = pokemons.some(
+        pokemon => String(pokemon.id) === String(idURL)
+    );
+
+    const selecaoValida = selecionado &&
+        String(selecionado.id) === String(idURL);
+
+    if (!pokemonExiste || !selecaoValida) {
+        localStorage.removeItem("pokemonSelecionado");
+
+        window.location.replace("./main/main.html");
+        return false;
+    }
+
+    return true;
+}
+
+if (!validarPokemon()) {
+    throw new Error("Pokémon inválido. Retornando ao menu.");
+}
+
 
 function lerVariavelCSS(nome) {
     return parseFloat(getComputedStyle(tela).getPropertyValue(nome));
