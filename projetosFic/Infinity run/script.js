@@ -54,6 +54,75 @@ const MARGEM_SPAWN_ARVORES = 2;                             // em larguras da á
 
 const TEMPO_NO_AR = (2 * VELOCIDADE_PULO) / GRAVIDADE;      // duração total de um pulo
 
+/* ---------- Sistema de áudio ---------- */
+
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function tocarBip(frequencia, duracao = 0.1, volume = 0.08) {
+    const oscilador = audioCtx.createOscillator();
+    const ganho = audioCtx.createGain();
+
+    oscilador.type = "sine";
+    oscilador.frequency.value = frequencia;
+
+    ganho.gain.setValueAtTime(volume, audioCtx.currentTime);
+    ganho.gain.exponentialRampToValueAtTime(
+        0.001,
+        audioCtx.currentTime + duracao
+    );
+
+    oscilador.connect(ganho);
+    ganho.connect(audioCtx.destination);
+
+    oscilador.start();
+    oscilador.stop(audioCtx.currentTime + duracao);
+}
+
+// Som de pulo
+function somPulo() {
+    tocarBip(650, 0.09);
+}
+
+// Dois bipes de pontuação
+function somPontuacao() {
+    tocarBip(850, 0.09);
+
+    setTimeout(() => {
+        tocarBip(1100, 0.12);
+    }, 120);
+}
+
+// Som de Game Over
+function somGameOver() {
+    tocarBip(600, 0.18, 0.12);
+
+    setTimeout(() => {
+        tocarBip(450, 0.18, 0.12);
+    }, 220);
+
+    setTimeout(() => {
+        tocarBip(300, 0.35, 0.12);
+    }, 440);
+}
+
+/* ---------- Música de fundo ---------- */
+
+const musicaFundo = new Audio("./assets/8bit-music.mp3");
+
+musicaFundo.loop = true;
+musicaFundo.volume = 0.22;
+
+function iniciarMusica() {
+    musicaFundo.play().catch(erro => {
+        console.warn("Não foi possível iniciar a música:", erro);
+    });
+}
+
+function pararMusica() {
+    musicaFundo.pause();
+    musicaFundo.currentTime = 0;
+}
+
 /* ---------- Estado ---------- */
 // 'carregando' -> 'pronto' -> 'jogando' -> 'fim' -> 'pronto' ...
 let estado = "carregando";
@@ -223,6 +292,8 @@ function tempoAcimaDaAltura(altura) {
 
 function pular() {
     if (estado !== "jogando" || !noChao) return;
+
+    somPulo(); // Som do pulo
 
     velocidadeY = VELOCIDADE_PULO;
     noChao = false;
@@ -545,9 +616,21 @@ function quadro(agora) {
     const pontuacaoInteira = Math.floor(pontuacaoExata);
 
     if (pontuacaoInteira !== pontos) {
+
+        const pontosAnteriores = pontos;
+
         pontos = pontuacaoInteira;
+
         atualizarContador();
         atualizarCicloDiaNoite(pontos);
+
+        // Som a cada 100 pontos
+        if (
+            Math.floor(pontos / 100) >
+            Math.floor(pontosAnteriores / 100)
+        ) {
+            somPontuacao();
+        }
     }
 
     const velocidade = velocidadeEm(pontuacaoExata);
@@ -577,6 +660,7 @@ function cancelarLoop() {
    ============================================================ */
 
 function resetarJogo() {
+    pararMusica();
     cancelarLoop();
     limparGrupos();
 
@@ -611,6 +695,11 @@ function iniciarJogo() {
     if (estado !== "pronto") return; // impede início duplicado
 
     estado = "jogando";
+
+    iniciarMusica();
+    if (audioCtx.state === "suspended") {
+    audioCtx.resume();
+}
     dicaInicio.classList.add("oculta");
     ultimoQuadro = performance.now();
 
@@ -622,7 +711,11 @@ function fimDeJogo() {
     if (estado !== "jogando") return;
 
     estado = "fim";
+
     cancelarLoop();
+
+    pararMusica();
+    somGameOver();
 
     pontuacaoFinal.textContent = pontos.toString().padStart(7, "0");
     gameOverScreen.classList.add("on");
